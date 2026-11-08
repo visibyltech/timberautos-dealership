@@ -20,7 +20,7 @@ export const FeaturedVehicles: React.FC<FeaturedVehiclesProps> = ({
   const displayVehicles = vehicles.filter((v) => v.featured).slice(0, 4);
 
   return (
-    <section className="py-20 bg-[#0B0C10] border-t border-[#181a22]">
+    <section className="py-20 bg-[#F5F4F0] border-t border-[#DEDAD0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -30,17 +30,17 @@ export const FeaturedVehicles: React.FC<FeaturedVehiclesProps> = ({
               <Sparkles className="w-3.5 h-3.5" />
               <span>Dealership Showcase</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-heading">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#242424] tracking-tight font-heading">
               Featured Luxury Inventory
             </h2>
-            <p className="text-neutral-400 text-sm leading-relaxed">
+            <p className="text-[#68645D] text-sm leading-relaxed">
               Every vehicle undergoes a stringent 300-point diagnostic inspection, verified customs documentation, and complete ownership history validation.
             </p>
           </div>
 
           <button
             onClick={onViewAllInventory}
-            className="self-start md:self-auto inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#D4AF37] hover:text-black bg-[#161820] hover:bg-gradient-to-r hover:from-[#D4AF37] hover:to-[#E5C158] border border-[#D4AF37]/40 rounded-lg transition-all group cursor-pointer"
+            className="self-start md:self-auto inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-wider text-[#8B6814] hover:text-black bg-white hover:bg-gradient-to-r hover:from-[#D4AF37] hover:to-[#E5C158] border border-[#C6A64B]/60 rounded-lg transition-all group cursor-pointer"
           >
             <span>View All Cars ({vehicles.length})</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
