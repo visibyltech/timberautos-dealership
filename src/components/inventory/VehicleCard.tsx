@@ -121,7 +121,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
               <span className="text-[10px] text-neutral-500 uppercase tracking-wider block">
                 From / month
               </span>
-              <span className="text-xs font-semibold text-neutral-300 tabular-nums">
+              <span className="text-[10px] sm:text-xs font-semibold text-neutral-300 tabular-nums">
                 {formatNaira(Math.round((vehicle.price * 0.7) / 24))}
               </span>
             </div>
