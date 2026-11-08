@@ -111,7 +111,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
               <span className="text-[10px] uppercase tracking-wider text-neutral-400 block font-medium">
                 Asking Price
               </span>
-              <span className="text-xl font-extrabold text-gold-gradient font-heading tabular-nums">
+              <span className="text-sm sm:text-xl font-extrabold text-gold-gradient font-heading tabular-nums break-words">
                 {formatNaira(vehicle.price)}
               </span>
             </div>
