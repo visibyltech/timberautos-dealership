@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DealershipProvider, useDealership } from './context/DealershipContext';
 import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
@@ -29,10 +29,45 @@ function DealershipApp() {
   const { vehicles } = useDealership();
 
   // Navigation state
-  const [activeTab, setActiveTab] = useState<string>('home');
+  const VALID_TABS = ['home', 'inventory', 'financing', 'installments', 'inspection', 'about', 'contact'];
+  const [activeTab, setActiveTabState] = useState<string>(() => {
+    const initialTab = window.location.hash.replace('#', '');
+    return VALID_TABS.includes(initialTab) ? initialTab : 'home';
+  });
+
+  // Keep in-app navigation in browser history so Android/browser Back returns
+  // to the previous Timber Autos page instead of leaving the website.
+  const setActiveTab = (tab: string) => {
+    if (!VALID_TABS.includes(tab) || tab === activeTab) return;
+    window.history.pushState({ timberAutosTab: tab }, '', `${window.location.pathname}${window.location.search}#${tab}`);
+    setActiveTabState(tab);
+  };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const tab = window.location.hash.replace('#', '');
+      setActiveTabState(VALID_TABS.includes(tab) ? tab : 'home');
+      setSelectedVehicleForDetails(null);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   // Modals state
   const [selectedVehicleForDetails, setSelectedVehicleForDetails] = useState<Vehicle | null>(null);
+
+  const handleSelectVehicle = (vehicle: Vehicle) => {
+    window.history.pushState({ ...(window.history.state || {}), timberAutosModal: 'vehicle' }, '', window.location.href);
+    setSelectedVehicleForDetails(vehicle);
+  };
+
+  const handleCloseVehicleDetails = () => {
+    if (window.history.state?.timberAutosModal === 'vehicle') {
+      window.history.back();
+    } else {
+      setSelectedVehicleForDetails(null);
+    }
+  };
   const [selectedVehicleForBuyNow, setSelectedVehicleForBuyNow] = useState<Vehicle | null>(null);
   const [selectedVehicleForInstallment, setSelectedVehicleForInstallment] = useState<Vehicle | null>(null);
   const [showInstallmentPortal, setShowInstallmentPortal] = useState(false);
@@ -99,7 +134,7 @@ function DealershipApp() {
 
             <FeaturedVehicles
               vehicles={vehicles}
-              onSelectVehicle={(veh) => setSelectedVehicleForDetails(veh)}
+              onSelectVehicle={handleSelectVehicle}
               onCalculateInstallment={(veh) => handleOpenInstallments(veh)}
               onViewAllInventory={() => {
                 setActiveTab('inventory');
@@ -204,12 +239,12 @@ function DealershipApp() {
       {selectedVehicleForDetails && (
         <VehicleDetailsModal
           vehicle={selectedVehicleForDetails}
-          onClose={() => setSelectedVehicleForDetails(null)}
+          onClose={handleCloseVehicleDetails}
           onBuyNow={handleOpenBuyNow}
           onPayInstallments={handleOpenInstallments}
           onBookInspection={handleOpenInspection}
           onCarFinancing={handleOpenFinancing}
-          onSelectVehicle={(v) => setSelectedVehicleForDetails(v)}
+          onSelectVehicle={handleSelectVehicle}
         />
       )}
 
