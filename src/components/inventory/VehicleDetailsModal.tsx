@@ -55,10 +55,6 @@ export const VehicleDetailsModal: React.FC<VehicleDetailsModalProps> = ({
     .filter((v) => v.id !== vehicle.id && (v.make === vehicle.make || v.bodyType === vehicle.bodyType))
     .slice(0, 3);
 
-  const phone = '2348143112826';
-  const whatsappMsg = `Hello Timber Autos Limited, I am interested in inquiring about the ${vehicle.year} ${vehicle.make} ${vehicle.model} (Asking Price: ₦${vehicle.price.toLocaleString()}, VIN: ${vehicle.vin}). Please provide more details on availability, inspection and purchase options.`;
-  const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(whatsappMsg)}`;
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
       <div 
