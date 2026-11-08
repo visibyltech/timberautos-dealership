@@ -96,7 +96,7 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
   };
 
   return (
-    <div className="py-12 bg-[#0B0C10] min-h-screen">
+    <div className="py-12 bg-[#F5F4F0] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Page Header */}
@@ -105,10 +105,10 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
             <Sparkles className="w-3.5 h-3.5" />
             <span>Digital Showroom</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight font-heading">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-[#242424] tracking-tight font-heading">
             Automobile Marketplace
           </h1>
-          <p className="text-neutral-400 text-sm max-w-2xl leading-relaxed">
+          <p className="text-[#68645D] text-sm max-w-2xl leading-relaxed">
             Browse our hand-curated collection of verified luxury vehicles available for direct online purchase, 3–24 month installment plans, and Autochek car financing.
           </p>
         </div>
@@ -123,9 +123,9 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
         />
 
         {/* Sort and Count Sub-Bar */}
-        <div className="flex items-center justify-between mb-6 text-xs text-neutral-400">
+        <div className="flex items-center justify-between mb-6 text-xs text-[#68645D]">
           <div>
-            Showing <span className="text-white font-semibold">{filteredVehicles.length}</span> of {vehicles.length} vehicles
+            Showing <span className="text-[#242424] font-semibold">{filteredVehicles.length}</span> of {vehicles.length} vehicles
           </div>
 
           <div className="flex items-center gap-2">
@@ -133,7 +133,7 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as any)}
-              className="bg-[#14161f] border border-[#242733] rounded-lg px-3 py-1.5 text-xs text-neutral-200 focus:outline-none focus:border-[#D4AF37]"
+              className="bg-white border border-[#DCD8CF] rounded-lg px-3 py-1.5 text-xs text-[#45423D] focus:outline-none focus:border-[#D4AF37]"
             >
               <option value="featured">Featured First</option>
               <option value="price_desc">Price: High to Low</option>
@@ -157,14 +157,14 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
             ))}
           </div>
         ) : (
-          <div className="bg-[#12141c] border border-[#20232d] rounded-2xl p-12 text-center max-w-lg mx-auto space-y-4 my-12">
-            <div className="w-14 h-14 rounded-full bg-[#1b1e2a] border border-[#D4AF37]/30 flex items-center justify-center mx-auto text-[#D4AF37]">
+          <div className="bg-white border border-[#DEDAD0] rounded-2xl p-12 text-center max-w-lg mx-auto space-y-4 my-12">
+            <div className="w-14 h-14 rounded-full bg-[#F4F1E9] border border-[#D4AF37]/30 flex items-center justify-center mx-auto text-[#D4AF37]">
               <Car className="w-7 h-7" />
             </div>
-            <h3 className="text-lg font-bold text-white font-heading">
+            <h3 className="text-lg font-bold text-[#242424] font-heading">
               No matching vehicles found
             </h3>
-            <p className="text-xs text-neutral-400 leading-relaxed">
+            <p className="text-xs text-[#68645D] leading-relaxed">
               We couldn't find any vehicle matching your current filter parameters. Try expanding your price range or resetting all filters.
             </p>
             <button
