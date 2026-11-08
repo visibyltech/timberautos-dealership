@@ -51,7 +51,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
     <div className="group relative bg-white border border-[#DEDAD0] hover:border-[#D4AF37]/50 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-black/10 flex flex-col justify-between">
       
       {/* Top Image Container */}
-      <div className="relative aspect-[16/10] w-full bg-[#E9E7E1] overflow-hidden cursor-pointer" onClick={() => onSelectVehicle(vehicle)}>
+      <div className="relative aspect-[4/3] w-full bg-[#E9E7E1] overflow-hidden cursor-pointer" onClick={() => onSelectVehicle(vehicle)}>
         <img
           src={mainImage}
           alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
@@ -61,7 +61,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             event.currentTarget.onerror = null;
             event.currentTarget.src = showroomFallback;
           }}
-          className="w-full h-full object-cover object-center brightness-125 contrast-110 saturate-110 group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover object-center brightness-125 contrast-100 saturate-110 group-hover:scale-105 transition-transform duration-500"
         />
 
         {/* Ambient Dark Gradient at bottom of image */}
@@ -91,7 +91,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         </div>
 
         {/* Condition Ribbon at bottom of photo */}
-        <div className="absolute bottom-2.5 left-3 z-10 text-[11px] font-medium text-white drop-shadow-md flex items-center gap-1.5">
+        <div className="absolute bottom-2.5 left-3 z-10 text-[11px] font-medium text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
           <span>{formatCondition(vehicle.condition)}</span>
         </div>
