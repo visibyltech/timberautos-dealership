@@ -81,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-[10px] sm:text-lg md:text-xl font-extrabold tracking-wide sm:tracking-wider text-white uppercase font-heading flex items-center gap-1 sm:gap-1.5 whitespace-nowrap">
+              <span className="text-sm sm:text-lg md:text-xl font-extrabold tracking-wide sm:tracking-wider text-white uppercase font-heading flex items-center gap-1 sm:gap-1.5 whitespace-nowrap">
                 TIMBER AUTOS <span className="hidden sm:inline text-[#D4AF37] font-light">LTD</span>
               </span>
               <span className="hidden sm:block text-[10px] tracking-widest uppercase text-neutral-400 -mt-0.5">
