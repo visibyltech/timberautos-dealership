@@ -30,7 +30,7 @@ export const Testimonials: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-[#0E1015] border-t border-[#1a1d24]">
+    <section className="py-20 bg-[#F0EEE8] border-t border-[#DEDAD0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -39,10 +39,10 @@ export const Testimonials: React.FC = () => {
             <Sparkles className="w-3.5 h-3.5" />
             <span>Client Dispatches</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-heading">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#242424] tracking-tight font-heading">
             What Our Distinguished Clients Say
           </h2>
-          <p className="text-neutral-400 text-xs sm:text-sm">
+          <p className="text-[#68645D] text-xs sm:text-sm">
             Verified experiences from business leaders and automotive enthusiasts across Nigeria.
           </p>
         </div>
@@ -52,7 +52,7 @@ export const Testimonials: React.FC = () => {
           {reviews.map((item, idx) => (
             <div
               key={idx}
-              className="bg-[#13151c] border border-[#20232c] hover:border-[#D4AF37]/40 p-6 sm:p-7 rounded-xl flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:shadow-black/60 relative group"
+              className="bg-white border border-[#DEDAD0] hover:border-[#D4AF37]/40 p-6 sm:p-7 rounded-xl flex flex-col justify-between transition-all duration-300 hover:shadow-xl hover:shadow-black/10 relative group"
             >
               <Quote className="w-8 h-8 text-[#D4AF37]/20 absolute top-5 right-5 group-hover:text-[#D4AF37]/30 transition-colors" />
 
@@ -63,19 +63,19 @@ export const Testimonials: React.FC = () => {
                   ))}
                 </div>
 
-                <p className="text-neutral-300 text-sm leading-relaxed mb-6 italic">
+                <p className="text-[#4F4B44] text-sm leading-relaxed mb-6 italic">
                   "{item.review}"
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-[#1e212b]">
-                <div className="text-xs font-semibold text-[#E5C158] mb-1">
+              <div className="pt-4 border-t border-[#DEDAD0]">
+                <div className="text-xs font-semibold text-[#76580F] mb-1">
                   Acquired: {item.vehicle}
                 </div>
-                <h4 className="text-white font-bold text-sm font-heading">
+                <h4 className="text-[#242424] font-bold text-sm font-heading">
                   {item.name}
                 </h4>
-                <p className="text-neutral-400 text-xs">
+                <p className="text-[#68645D] text-xs">
                   {item.role} · {item.location}
                 </p>
               </div>
