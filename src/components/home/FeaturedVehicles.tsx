@@ -48,7 +48,7 @@ export const FeaturedVehicles: React.FC<FeaturedVehiclesProps> = ({
         </div>
 
         {/* Vehicle Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4 lg:gap-6">
           {displayVehicles.map((vehicle) => (
             <VehicleCard
               key={vehicle.id}
