@@ -4,6 +4,10 @@ import { Vehicle } from '../../types';
 import { formatNaira, formatKm, formatCondition } from '../../utils/formatters';
 import { useDealership } from '../../context/DealershipContext';
 import showroomFallback from '../../assets/images/hero_luxury_showroom_1794141434269.jpg';
+import mercedesImage from '../../assets/images/vehicle_mercedes_g63_1794141435015.jpg';
+import rangeRoverImage from '../../assets/images/vehicle_range_rover_1794141435125.jpg';
+import lexusImage from '../../assets/images/vehicle_lexus_lx600_1794141437259.jpg';
+import landCruiserImage from '../../assets/images/vehicle_toyota_landcruiser_1794141435833.jpg';
 
 interface VehicleCardProps {
   vehicle: Vehicle;
@@ -19,7 +23,16 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   const { savedVehicles, toggleSaveVehicle } = useDealership();
   const isSaved = savedVehicles.some((v) => v.id === vehicle.id);
 
-  const mainImage = vehicle.images?.[0] || showroomFallback;
+  // Resolve legacy /src/assets paths already saved in customers' browser storage.
+  const legacyImageMap: Record<string, string> = {
+    '/src/assets/images/hero_luxury_showroom_1794141434269.jpg': showroomFallback,
+    '/src/assets/images/vehicle_mercedes_g63_1794141435015.jpg': mercedesImage,
+    '/src/assets/images/vehicle_range_rover_1794141435125.jpg': rangeRoverImage,
+    '/src/assets/images/vehicle_lexus_lx600_1794141437259.jpg': lexusImage,
+    '/src/assets/images/vehicle_toyota_landcruiser_1794141435833.jpg': landCruiserImage
+  };
+  const storedImage = vehicle.images?.[0] || '';
+  const mainImage = legacyImageMap[storedImage] || storedImage || showroomFallback;
 
   const getAvailabilityClass = () => {
     switch (vehicle.availability) {
