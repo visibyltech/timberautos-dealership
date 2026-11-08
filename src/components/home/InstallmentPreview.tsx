@@ -21,7 +21,7 @@ export const InstallmentPreview: React.FC<InstallmentPreviewProps> = ({ onExplor
   const durations = [3, 6, 9, 12, 18, 24];
 
   return (
-    <section className="py-20 bg-gradient-to-b from-[#0B0C10] via-[#0f1118] to-[#0B0C10] border-t border-[#1a1d25]">
+    <section className="py-20 bg-gradient-to-b from-[#F5F4F0] via-[#EEECE6] to-[#F5F4F0] border-t border-[#DEDAD0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -33,16 +33,16 @@ export const InstallmentPreview: React.FC<InstallmentPreviewProps> = ({ onExplor
               <span>In-House Installment Facility</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight font-heading">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#242424] tracking-tight leading-tight font-heading">
               Your Dream Car, <br />
               <span className="text-gold-gradient">Within Reach.</span>
             </h2>
 
-            <p className="text-neutral-300 text-base leading-relaxed">
-              Spread your vehicle payments over an agreed period of up to <strong className="text-white">24 months</strong>, subject to eligibility approval and dealership terms. Take delivery upon deposit and manage your payments through our structured portal.
+            <p className="text-[#4F4B44] text-base leading-relaxed">
+              Spread your vehicle payments over an agreed period of up to <strong className="text-[#242424]">24 months</strong>, subject to eligibility approval and dealership terms. Take delivery upon deposit and manage your payments through our structured portal.
             </p>
 
-            <ul className="space-y-3 text-sm text-neutral-300">
+            <ul className="space-y-3 text-sm text-[#4F4B44]">
               <li className="flex items-center gap-2.5">
                 <CheckCircle2 className="w-4 h-4 text-[#D4AF37] shrink-0" />
                 <span>Flexible terms from 3 to 24 months</span>
@@ -73,11 +73,11 @@ export const InstallmentPreview: React.FC<InstallmentPreviewProps> = ({ onExplor
           </div>
 
           {/* Right Interactive Calculator Card */}
-          <div className="lg:col-span-7 bg-[#13151c] border border-[#232733] rounded-2xl p-6 sm:p-8 shadow-2xl shadow-black/80">
-            <div className="flex items-center justify-between pb-4 border-b border-[#1f222c] mb-6">
+          <div className="lg:col-span-7 bg-white border border-[#DEDAD0] rounded-2xl p-6 sm:p-8 shadow-2xl shadow-black/10">
+            <div className="flex items-center justify-between pb-4 border-b border-[#DEDAD0] mb-6">
               <div className="flex items-center gap-2">
                 <Calculator className="w-5 h-5 text-[#D4AF37]" />
-                <h3 className="text-lg font-bold text-white font-heading">
+                <h3 className="text-lg font-bold text-[#242424] font-heading">
                   Quick Installment Calculator
                 </h3>
               </div>
@@ -90,8 +90,8 @@ export const InstallmentPreview: React.FC<InstallmentPreviewProps> = ({ onExplor
               {/* Vehicle Price Slider */}
               <div>
                 <div className="flex justify-between items-center text-xs mb-2">
-                  <span className="text-neutral-400 font-medium">Vehicle Value (₦)</span>
-                  <span className="text-white font-bold text-sm font-heading tabular-nums">
+                  <span className="text-[#68645D] font-medium">Vehicle Value (₦)</span>
+                  <span className="text-[#242424] font-bold text-sm font-heading tabular-nums">
                     {formatNaira(vehicleValue)}
                   </span>
                 </div>
@@ -102,9 +102,9 @@ export const InstallmentPreview: React.FC<InstallmentPreviewProps> = ({ onExplor
                   step={5000000}
                   value={vehicleValue}
                   onChange={(e) => setVehicleValue(Number(e.target.value))}
-                  className="w-full h-2 bg-[#20232d] rounded-lg appearance-none cursor-pointer accent-[#D4AF37]"
+                  className="w-full h-2 bg-[#E5E1D8] rounded-lg appearance-none cursor-pointer accent-[#D4AF37]"
                 />
-                <div className="flex justify-between text-[10px] text-neutral-500 mt-1">
+                <div className="flex justify-between text-[10px] text-[#77736B] mt-1">
                   <span>₦50,000,000</span>
                   <span>₦200,000,000</span>
                   <span>₦400,000,000</span>
@@ -114,7 +114,7 @@ export const InstallmentPreview: React.FC<InstallmentPreviewProps> = ({ onExplor
               {/* Deposit Slider */}
               <div>
                 <div className="flex justify-between items-center text-xs mb-2">
-                  <span className="text-neutral-400 font-medium">Initial Down Payment ({depositPercent}%)</span>
+                  <span className="text-[#68645D] font-medium">Initial Down Payment ({depositPercent}%)</span>
                   <span className="text-[#E5C158] font-bold text-sm font-heading tabular-nums">
                     {formatNaira(depositAmount)}
                   </span>
@@ -126,9 +126,9 @@ export const InstallmentPreview: React.FC<InstallmentPreviewProps> = ({ onExplor
                   step={5}
                   value={depositPercent}
                   onChange={(e) => setDepositPercent(Number(e.target.value))}
-                  className="w-full h-2 bg-[#20232d] rounded-lg appearance-none cursor-pointer accent-[#D4AF37]"
+                  className="w-full h-2 bg-[#E5E1D8] rounded-lg appearance-none cursor-pointer accent-[#D4AF37]"
                 />
-                <div className="flex justify-between text-[10px] text-neutral-500 mt-1">
+                <div className="flex justify-between text-[10px] text-[#77736B] mt-1">
                   <span>30% Minimum</span>
                   <span>50%</span>
                   <span>70%</span>
@@ -137,7 +137,7 @@ export const InstallmentPreview: React.FC<InstallmentPreviewProps> = ({ onExplor
 
               {/* Duration Selector */}
               <div>
-                <label className="block text-xs font-medium text-neutral-400 mb-2">
+                <label className="block text-xs font-medium text-[#68645D] mb-2">
                   Financing Duration (Months)
                 </label>
                 <div className="grid grid-cols-6 gap-2">
@@ -148,7 +148,7 @@ export const InstallmentPreview: React.FC<InstallmentPreviewProps> = ({ onExplor
                       className={`py-2 text-xs font-semibold rounded-lg border transition-all ${
                         durationMonths === m
                           ? 'bg-[#D4AF37] text-black border-[#D4AF37]'
-                          : 'bg-[#181b24] text-neutral-300 border-[#262a36] hover:border-[#D4AF37]/40'
+                          : 'bg-white text-[#4F4B44] border-[#DCD8CF] hover:border-[#D4AF37]/40'
                       }`}
                     >
                       {m} Mo
@@ -158,24 +158,24 @@ export const InstallmentPreview: React.FC<InstallmentPreviewProps> = ({ onExplor
               </div>
 
               {/* Calculation Output Box */}
-              <div className="bg-[#0b0c10] border border-[#20232d] p-5 rounded-xl space-y-3">
-                <div className="flex justify-between items-center text-xs text-neutral-400">
+              <div className="bg-[#F4F2EC] border border-[#DEDAD0] p-5 rounded-xl space-y-3">
+                <div className="flex justify-between items-center text-xs text-[#68645D]">
                   <span>Financed Balance:</span>
-                  <span className="text-neutral-200 font-semibold tabular-nums">{formatNaira(remainingPrincipal)}</span>
+                  <span className="text-[#45423D] font-semibold tabular-nums">{formatNaira(remainingPrincipal)}</span>
                 </div>
-                <div className="flex justify-between items-center text-xs text-neutral-400">
+                <div className="flex justify-between items-center text-xs text-[#68645D]">
                   <span>Administrative &amp; Processing (5%):</span>
-                  <span className="text-neutral-200 font-semibold tabular-nums">{formatNaira(adminCharge)}</span>
+                  <span className="text-[#45423D] font-semibold tabular-nums">{formatNaira(adminCharge)}</span>
                 </div>
-                <div className="pt-3 border-t border-[#1d2028] flex justify-between items-baseline">
+                <div className="pt-3 border-t border-[#DEDAD0] flex justify-between items-baseline">
                   <div>
-                    <span className="text-xs uppercase tracking-wider text-neutral-400 font-semibold block">
+                    <span className="text-xs uppercase tracking-wider text-[#68645D] font-semibold block">
                       Estimated Monthly Payment
                     </span>
                     <span className="text-2xl font-extrabold text-gold-gradient font-heading tabular-nums">
                       {formatNaira(monthlyPayment)}
                     </span>
-                    <span className="text-[11px] text-neutral-500 block">
+                    <span className="text-[11px] text-[#77736B] block">
                       for {durationMonths} consecutive months
                     </span>
                   </div>
