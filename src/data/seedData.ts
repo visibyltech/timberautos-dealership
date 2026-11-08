@@ -1,4 +1,9 @@
 import { Vehicle, DealershipSettings, UserAccount, Order, InstallmentApplication, InspectionBooking, NotificationItem } from '../types';
+import showroomImage from '../assets/images/hero_luxury_showroom_1794141434269.jpg';
+import mercedesImage from '../assets/images/vehicle_mercedes_g63_1794141435015.jpg';
+import rangeRoverImage from '../assets/images/vehicle_range_rover_1794141435125.jpg';
+import lexusImage from '../assets/images/vehicle_lexus_lx600_1794141437259.jpg';
+import landCruiserImage from '../assets/images/vehicle_toyota_landcruiser_1794141435833.jpg';
 
 export const INITIAL_SETTINGS: DealershipSettings = {
   businessName: 'TIMBER AUTOS LIMITED',
@@ -62,8 +67,8 @@ export const INITIAL_VEHICLES: Vehicle[] = [
     ],
     availability: 'available',
     images: [
-      '/src/assets/images/vehicle_mercedes_g63_1794141435015.jpg',
-      '/src/assets/images/hero_luxury_showroom_1794141434269.jpg'
+      mercedesImage,
+      showroomImage
     ],
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     featured: true,
@@ -96,8 +101,8 @@ export const INITIAL_VEHICLES: Vehicle[] = [
       'Full Dubai customs clearance documentation & clean CarFax'
     ],
     images: [
-      '/src/assets/images/vehicle_range_rover_1794141435125.jpg',
-      '/src/assets/images/hero_luxury_showroom_1794141434269.jpg'
+      rangeRoverImage,
+      showroomImage
     ],
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
     availability: 'available',
@@ -131,8 +136,8 @@ export const INITIAL_VEHICLES: Vehicle[] = [
       'Lexus Safety System+ 2.5 with pedestrian pre-collision'
     ],
     images: [
-      '/src/assets/images/vehicle_lexus_lx600_1794141437259.jpg',
-      '/src/assets/images/hero_luxury_showroom_1794141434269.jpg'
+      lexusImage,
+      showroomImage
     ],
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
     availability: 'available',
@@ -166,8 +171,8 @@ export const INITIAL_VEHICLES: Vehicle[] = [
       'Heads-Up Display (HUD) and 360-degree panoramic view monitor'
     ],
     images: [
-      '/src/assets/images/vehicle_toyota_landcruiser_1794141435833.jpg',
-      '/src/assets/images/hero_luxury_showroom_1794141434269.jpg'
+      landCruiserImage,
+      showroomImage
     ],
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
     availability: 'available',
@@ -201,8 +206,8 @@ export const INITIAL_VEHICLES: Vehicle[] = [
       'Clean CarFax with zero accident history'
     ],
     images: [
-      '/src/assets/images/hero_luxury_showroom_1794141434269.jpg',
-      '/src/assets/images/vehicle_mercedes_g63_1794141435015.jpg'
+      showroomImage,
+      mercedesImage
     ],
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     availability: 'available',
@@ -235,7 +240,7 @@ export const INITIAL_VEHICLES: Vehicle[] = [
       'Customs duty fully paid and verified'
     ],
     images: [
-      '/src/assets/images/vehicle_lexus_lx600_1794141437259.jpg'
+      lexusImage
     ],
     videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
     availability: 'reserved',
@@ -255,7 +260,7 @@ export const INITIAL_ORDERS: Order[] = [
       model: 'Range Rover Autobiography SV',
       year: 2024,
       price: 340000000,
-      image: '/src/assets/images/vehicle_range_rover_1794141435125.jpg',
+      image: rangeRoverImage,
       vin: 'SALWR2V45PA889312'
     },
     customer: {
@@ -288,7 +293,7 @@ export const INITIAL_INSTALLMENTS: InstallmentApplication[] = [
       model: 'Land Cruiser 300 ZX',
       year: 2024,
       price: 225000000,
-      image: '/src/assets/images/vehicle_toyota_landcruiser_1794141435833.jpg'
+      image: landCruiserImage
     },
     customer: {
       fullName: 'Dr. Folake Balogun',
@@ -338,7 +343,7 @@ export const INITIAL_INSPECTIONS: InspectionBooking[] = [
       model: 'AMG G 63 V8 Biturbo',
       year: 2024,
       price: 385000000,
-      image: '/src/assets/images/vehicle_mercedes_g63_1794141435015.jpg',
+      image: mercedesImage,
       vin: 'W1N978164RX912401'
     },
     customer: {
