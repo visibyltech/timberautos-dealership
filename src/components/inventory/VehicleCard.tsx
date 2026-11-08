@@ -3,6 +3,7 @@ import { Heart, Fuel, Gauge, Cog, Eye, Calendar, ArrowRight } from 'lucide-react
 import { Vehicle } from '../../types';
 import { formatNaira, formatKm, formatCondition } from '../../utils/formatters';
 import { useDealership } from '../../context/DealershipContext';
+import showroomFallback from '../../assets/images/hero_luxury_showroom_1794141434269.jpg';
 
 interface VehicleCardProps {
   vehicle: Vehicle;
@@ -18,7 +19,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   const { savedVehicles, toggleSaveVehicle } = useDealership();
   const isSaved = savedVehicles.some((v) => v.id === vehicle.id);
 
-  const mainImage = vehicle.images[0] || '/src/assets/images/hero_luxury_showroom_1794141434269.jpg';
+  const mainImage = vehicle.images?.[0] || showroomFallback;
 
   const getAvailabilityClass = () => {
     switch (vehicle.availability) {
@@ -43,6 +44,10 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
           loading="lazy"
           referrerPolicy="no-referrer"
+          onError={(event) => {
+            event.currentTarget.onerror = null;
+            event.currentTarget.src = showroomFallback;
+          }}
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
         />
 
@@ -145,10 +150,10 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         </div>
 
         {/* Card Action Buttons */}
-        <div className="mt-5 pt-3 border-t border-[#1e212a] flex items-center gap-2">
+        <div className="mt-4 pt-3 border-t border-[#1e212a] grid grid-cols-2 gap-2">
           <button
             onClick={() => onSelectVehicle(vehicle)}
-            className="flex-1 py-2.5 px-3 bg-[#171a22] hover:bg-[#222530] text-white hover:text-[#E5C158] border border-[#2b2f3d] hover:border-[#D4AF37]/50 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+            className="min-w-0 w-full py-2.5 px-2 sm:px-3 bg-[#171a22] hover:bg-[#222530] text-white hover:text-[#E5C158] border border-[#2b2f3d] hover:border-[#D4AF37]/50 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer"
           >
             <Eye className="w-3.5 h-3.5" />
             <span>View Details</span>
@@ -157,10 +162,10 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           {onCalculateInstallment && vehicle.availability !== 'sold' && (
             <button
               onClick={() => onCalculateInstallment(vehicle)}
-              className="py-2.5 px-3 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 text-[#E5C158] border border-[#D4AF37]/30 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer whitespace-nowrap"
+              className="min-w-0 w-full py-2.5 px-2 sm:px-3 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 text-[#E5C158] border border-[#D4AF37]/30 rounded-lg text-[11px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer text-center leading-tight"
               title="Calculate Installment Plan"
             >
-              <span>Installment</span>
+              <span className="whitespace-normal">Pay in Installments</span>
               <ArrowRight className="w-3 h-3" />
             </button>
           )}
