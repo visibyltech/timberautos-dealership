@@ -36,7 +36,7 @@ export const WhyChooseUs: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-[#0E1015] border-t border-[#1a1d24]">
+    <section className="py-20 bg-[#F0EEE8] border-t border-[#DEDAD0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -45,10 +45,10 @@ export const WhyChooseUs: React.FC = () => {
             <Sparkles className="w-3.5 h-3.5" />
             <span>The Timber Autos Standard</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-heading">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#242424] tracking-tight font-heading">
             Why Choose Timber Autos Limited
           </h2>
-          <p className="text-neutral-400 text-sm leading-relaxed">
+          <p className="text-[#68645D] text-sm leading-relaxed">
             We are committed to elevating the automobile acquisition experience in Nigeria with integrity, transparency, and first-class client advisory.
           </p>
         </div>
@@ -60,15 +60,15 @@ export const WhyChooseUs: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-[#13151c] border border-[#20232c] hover:border-[#D4AF37]/50 p-6 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-black/60 group"
+                className="bg-white border border-[#DEDAD0] hover:border-[#D4AF37]/50 p-6 rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-black/10 group"
               >
-                <div className="w-12 h-12 rounded-lg bg-[#1c1f28] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] mb-5 group-hover:bg-[#D4AF37] group-hover:text-black transition-colors duration-300">
+                <div className="w-12 h-12 rounded-lg bg-[#F4F1E9] border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] mb-5 group-hover:bg-[#D4AF37] group-hover:text-black transition-colors duration-300">
                   <Icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2 font-heading group-hover:text-[#E5C158] transition-colors">
+                <h3 className="text-lg font-bold text-[#242424] mb-2 font-heading group-hover:text-[#E5C158] transition-colors">
                   {pillar.title}
                 </h3>
-                <p className="text-neutral-400 text-sm leading-relaxed">
+                <p className="text-[#68645D] text-sm leading-relaxed">
                   {pillar.description}
                 </p>
               </div>
