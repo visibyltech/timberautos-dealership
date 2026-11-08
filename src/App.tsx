@@ -25,11 +25,12 @@ import { AboutUsView } from './components/pages/AboutUsView';
 import { ContactView } from './components/pages/ContactView';
 import { Vehicle } from './types';
 
+const VALID_TABS = ['home', 'inventory', 'financing', 'installments', 'inspection', 'about', 'contact'];
+
 function DealershipApp() {
   const { vehicles } = useDealership();
 
   // Navigation state
-  const VALID_TABS = ['home', 'inventory', 'financing', 'installments', 'inspection', 'about', 'contact'];
   const [activeTab, setActiveTabState] = useState<string>(() => {
     const initialTab = window.location.hash.replace('#', '');
     return VALID_TABS.includes(initialTab) ? initialTab : 'home';
