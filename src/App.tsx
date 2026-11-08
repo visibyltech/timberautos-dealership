@@ -120,7 +120,7 @@ function DealershipApp() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0C10] text-[#F3F4F6] flex flex-col selection:bg-[#D4AF37] selection:text-black">
+    <div className="min-h-screen bg-[#F5F4F0] text-[#242424] flex flex-col selection:bg-[#D4AF37] selection:text-black">
       
       {/* Top Header Navigation */}
       <Header
@@ -184,7 +184,7 @@ function DealershipApp() {
 
         {/* TAB 3: CAR FINANCING */}
         {activeTab === 'financing' && (
-          <div className="py-12 bg-[#0B0C10]">
+          <div className="py-12 bg-[#F5F4F0]">
             <FinancingBanner onOpenFinancingModal={() => handleOpenFinancing()} />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
               <FeaturedVehicles
@@ -199,7 +199,7 @@ function DealershipApp() {
 
         {/* TAB 4: PAY IN INSTALLMENTS */}
         {activeTab === 'installments' && (
-          <div className="py-8 bg-[#0B0C10]">
+          <div className="py-8 bg-[#F5F4F0]">
             <InstallmentPreview onExploreInstallments={() => handleOpenInstallments()} />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
               <FeaturedVehicles
@@ -214,7 +214,7 @@ function DealershipApp() {
 
         {/* TAB 5: BOOK INSPECTION */}
         {activeTab === 'inspection' && (
-          <div className="py-8 bg-[#0B0C10]">
+          <div className="py-8 bg-[#F5F4F0]">
             <InspectionBanner onOpenBookingModal={() => handleOpenInspection()} />
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
               <FeaturedVehicles
