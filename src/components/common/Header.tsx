@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Heart, User, Menu, X, Shield, Phone, Sparkles } from 'lucide-react';
+import { Search, Heart, User, Menu, X, Shield, Calculator } from 'lucide-react';
 import { useDealership } from '../../context/DealershipContext';
 
 interface HeaderProps {
@@ -41,17 +41,10 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       {/* Top micro info strip */}
-      <div className="bg-[#07080a] border-b border-[#1c1e24] text-xs text-neutral-400 py-1.5 px-4 sm:px-8">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-neutral-300">
-              <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
-              <a href="tel:+2348143112826" className="hover:text-[#D4AF37] transition-colors">+234 814 311 2826</a>
-            </span>
-            <span className="hidden md:inline text-neutral-600">|</span>
-            <span className="hidden md:inline text-neutral-400">
-              Lekki Phase 1, Lagos &amp; CBD, Abuja
-            </span>
+      <div className="bg-[#07080a] border-b border-[#1c1e24] text-xs text-neutral-400 py-1.5 px-3 sm:px-8">
+        <div className="max-w-7xl mx-auto flex items-center justify-center md:justify-between">
+          <div className="hidden md:flex items-center gap-4 text-neutral-400">
+            <span>Lekki Phase 1, Lagos &amp; CBD, Abuja</span>
           </div>
 
           <div className="flex items-center gap-4 text-xs">
@@ -73,14 +66,14 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Main Navigation Bar */}
       <header className="sticky top-0 z-40 bg-[#0B0C10]/95 backdrop-blur-md border-b border-[#1f2229] transition-all">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
+        <div className="max-w-7xl mx-auto w-full px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-6">
           
           {/* Brand Logo & Title */}
           <div 
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3 cursor-pointer select-none shrink-0"
+            className="flex items-center gap-2 sm:gap-3 cursor-pointer select-none shrink min-w-0"
           >
-            <div className="relative w-11 h-11 rounded-lg overflow-hidden bg-black border border-[#D4AF37]/40 flex items-center justify-center shadow-lg shadow-black/60 group">
+            <div className="relative w-8 h-8 sm:w-11 sm:h-11 rounded-lg overflow-hidden bg-black border border-[#D4AF37]/40 flex items-center justify-center shadow-lg shadow-black/60 group shrink-0">
               <img
                 src="/assets/aistudio/file_00000000d02881f485cd91770ad63cb9_5f7889d7.png"
                 alt="Timber Autos Limited Logo"
@@ -88,10 +81,10 @@ export const Header: React.FC<HeaderProps> = ({
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-extrabold tracking-wider text-white uppercase font-heading flex items-center gap-1.5">
+              <span className="text-[11px] sm:text-lg md:text-xl font-extrabold tracking-wide sm:tracking-wider text-white uppercase font-heading flex items-center gap-1 sm:gap-1.5 whitespace-nowrap">
                 TIMBER AUTOS <span className="text-[#D4AF37] font-light">LTD</span>
               </span>
-              <span className="text-[10px] tracking-widest uppercase text-neutral-400 -mt-0.5">
+              <span className="hidden sm:block text-[10px] tracking-widest uppercase text-neutral-400 -mt-0.5">
                 Luxury Dealership &amp; Import
               </span>
             </div>
@@ -125,21 +118,21 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Search Button */}
             <button
               onClick={onOpenSearch}
-              className="p-2.5 text-neutral-300 hover:text-[#D4AF37] hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a]"
+              className="p-1.5 sm:p-2.5 text-neutral-300 hover:text-[#D4AF37] hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a]"
               title="Search Inventory"
               aria-label="Search Inventory"
             >
-              <Search className="w-5 h-5" />
+              <Search className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
 
             {/* Saved Vehicles Wishlist */}
             <button
               onClick={onOpenSaved}
-              className="relative p-2.5 text-neutral-300 hover:text-[#D4AF37] hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a]"
+              className="relative p-1.5 sm:p-2.5 text-neutral-300 hover:text-[#D4AF37] hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a]"
               title="Saved Vehicles"
               aria-label="Saved Vehicles"
             >
-              <Heart className="w-5 h-5" />
+              <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
               {savedVehicles.length > 0 && (
                 <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-[#D4AF37] text-black text-[10px] font-bold rounded-full flex items-center justify-center">
                   {savedVehicles.length}
@@ -147,13 +140,22 @@ export const Header: React.FC<HeaderProps> = ({
               )}
             </button>
 
+            {/* Installment calculator shortcut */}
+            <button
+              onClick={() => handleNavClick('installments')}
+              className="p-1.5 sm:p-2.5 text-neutral-300 hover:text-[#D4AF37] hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a] shrink-0"
+              title="Installment Calculator"
+              aria-label="Installment Calculator"
+            >
+              <Calculator className="w-4 h-4 sm:w-5 sm:h-5" />
+            </button>
             {/* Account / Login */}
             <button
               onClick={onOpenAuth}
-              className="flex items-center gap-2 px-3 py-2 text-neutral-300 hover:text-white hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a]"
+              className="flex items-center gap-1 sm:gap-2 px-1.5 sm:px-3 py-1.5 sm:py-2 text-neutral-300 hover:text-white hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a]"
               title={currentUser ? currentUser.fullName : "Customer Account"}
             >
-              <div className="w-7 h-7 rounded-full bg-[#1e2129] border border-[#D4AF37]/40 flex items-center justify-center text-[#D4AF37] text-xs font-bold">
+              <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#1e2129] border border-[#D4AF37]/40 flex items-center justify-center text-[#D4AF37] text-xs font-bold shrink-0">
                 {currentUser ? currentUser.fullName.charAt(0) : <User className="w-3.5 h-3.5" />}
               </div>
               <span className="hidden xl:inline text-xs font-medium max-w-[100px] truncate">
@@ -164,7 +166,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Prominent Browse Cars Button */}
             <button
               onClick={() => handleNavClick('inventory')}
-              className="hidden sm:inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-black bg-gradient-to-r from-[#D4AF37] via-[#E5C158] to-[#C59B27] rounded-lg hover:shadow-lg hover:shadow-[#D4AF37]/20 hover:scale-[1.02] active:scale-[0.98] transition-all whitespace-nowrap"
+              className="hidden xl:inline-flex items-center justify-center px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-black bg-gradient-to-r from-[#D4AF37] via-[#E5C158] to-[#C59B27] rounded-lg hover:shadow-lg hover:shadow-[#D4AF37]/20 hover:scale-[1.02] active:scale-[0.98] transition-all whitespace-nowrap"
             >
               Browse Cars
             </button>
@@ -172,7 +174,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Mobile menu hamburger toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-neutral-300 hover:text-white hover:bg-[#16181f] rounded-lg transition-colors"
+              className="lg:hidden p-1.5 sm:p-2 text-neutral-300 hover:text-white hover:bg-[#16181f] rounded-lg transition-colors shrink-0"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
