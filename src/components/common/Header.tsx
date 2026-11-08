@@ -41,7 +41,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       {/* Top micro info strip */}
-      <div className="bg-[#07080a] border-b border-[#1c1e24] text-xs text-neutral-400 py-1.5 px-3 sm:px-8">
+      <div className="hidden sm:block bg-[#07080a] border-b border-[#1c1e24] text-xs text-neutral-400 py-1.5 px-3 sm:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-center md:justify-between">
           <div className="hidden md:flex items-center gap-4 text-neutral-400">
             <span>Lekki Phase 1, Lagos &amp; CBD, Abuja</span>
