@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import showroomImage from '../../assets/images/hero_luxury_showroom_1794141434269.jpg';
+import mercedesImage from '../../assets/images/vehicle_mercedes_g63_1794141435015.jpg';
+import rangeRoverImage from '../../assets/images/vehicle_range_rover_1794141435125.jpg';
+import landCruiserImage from '../../assets/images/vehicle_toyota_landcruiser_1794141435833.jpg';
 import { ArrowRight, ShieldCheck, CreditCard, Sparkles, Award } from 'lucide-react';
 
 interface HeroSliderProps {
@@ -8,25 +12,25 @@ interface HeroSliderProps {
 
 const SLIDES = [
   {
-    image: '/src/assets/images/hero_luxury_showroom_1794141434269.jpg',
+    image: showroomImage,
     badge: 'Welcome to Timber Autos Limited',
     subtitle: 'Exclusive Dealership Showroom',
     carName: 'Flagship Luxury Collection'
   },
   {
-    image: '/src/assets/images/vehicle_mercedes_g63_1794141435015.jpg',
+    image: mercedesImage,
     badge: 'Iconic Power & Heritage',
     subtitle: 'Immediate Showroom Delivery',
     carName: '2024 Mercedes-AMG G 63 V8'
   },
   {
-    image: '/src/assets/images/vehicle_range_rover_1794141435125.jpg',
+    image: rangeRoverImage,
     badge: 'British Aristocratic Luxury',
     subtitle: 'Santorini Black SV Autobiography',
     carName: '2024 Range Rover SV Long Wheelbase'
   },
   {
-    image: '/src/assets/images/vehicle_toyota_landcruiser_1794141435833.jpg',
+    image: landCruiserImage,
     badge: 'Master of All Terrains',
     subtitle: 'Twin-Turbo V6 Precision',
     carName: '2024 Toyota Land Cruiser 300 ZX'
@@ -47,7 +51,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
   }, []);
 
   return (
-    <div className="relative w-full h-[82vh] min-h-[580px] max-h-[820px] bg-black overflow-hidden select-none">
+    <div className="relative w-full min-h-[540px] sm:min-h-[620px] lg:min-h-[680px] bg-black overflow-hidden select-none">
       {/* Background Images with smooth crossfade */}
       {SLIDES.map((slide, index) => {
         const isActive = index === currentSlide;
@@ -73,8 +77,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
       })}
 
       {/* Hero Content Overlay */}
-      <div className="relative z-20 max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-        <div className="max-w-2xl lg:max-w-3xl space-y-6">
+      <div className="relative z-20 max-w-7xl mx-auto min-h-[540px] sm:min-h-[620px] lg:min-h-[680px] px-4 sm:px-6 lg:px-8 py-10 sm:py-16 flex flex-col justify-center">
+        <div className="max-w-2xl lg:max-w-3xl space-y-4 sm:space-y-6">
           
           {/* Subtle gold brand eyebrow */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-[#D4AF37]/40 backdrop-blur-md">
@@ -85,7 +89,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.1] font-heading">
+          <h1 className="text-[2rem] sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight leading-[1.1] font-heading">
             Drive Excellence. <br />
             <span className="text-gold-gradient">Own Your Dream Car.</span>
           </h1>
@@ -114,7 +118,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
           </div>
 
           {/* Trust Highlights Strip */}
-          <div className="pt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-neutral-800/80 max-w-2xl text-xs">
+          <div className="pt-4 sm:pt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 border-t border-neutral-800/80 max-w-2xl text-xs">
             <div className="flex items-center gap-2 text-neutral-300">
               <ShieldCheck className="w-4 h-4 text-[#D4AF37] shrink-0" />
               <span>Verified Clean Title</span>
