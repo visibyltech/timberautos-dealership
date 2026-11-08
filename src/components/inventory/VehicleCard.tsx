@@ -80,7 +80,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
       </div>
 
       {/* Card Content Area */}
-      <div className="p-5 flex-1 flex flex-col justify-between">
+      <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between min-w-0">
         <div>
           {/* Make and Year */}
           <div className="flex items-center justify-between gap-2 text-xs text-neutral-400 mb-1">
