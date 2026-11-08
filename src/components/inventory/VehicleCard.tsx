@@ -48,10 +48,10 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
   };
 
   return (
-    <div className="group relative bg-[#111318] border border-[#21242d] hover:border-[#D4AF37]/50 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-black/80 flex flex-col justify-between">
+    <div className="group relative bg-white border border-[#DEDAD0] hover:border-[#D4AF37]/50 rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-black/10 flex flex-col justify-between">
       
       {/* Top Image Container */}
-      <div className="relative aspect-[16/10] w-full bg-[#0c0d12] overflow-hidden cursor-pointer" onClick={() => onSelectVehicle(vehicle)}>
+      <div className="relative aspect-[16/10] w-full bg-[#E9E7E1] overflow-hidden cursor-pointer" onClick={() => onSelectVehicle(vehicle)}>
         <img
           src={mainImage}
           alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
@@ -61,11 +61,11 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             event.currentTarget.onerror = null;
             event.currentTarget.src = showroomFallback;
           }}
-          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover object-center brightness-125 contrast-110 saturate-110 group-hover:scale-105 transition-transform duration-500"
         />
 
         {/* Ambient Dark Gradient at bottom of image */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111318] via-transparent to-transparent opacity-80" />
+        
 
         {/* Top Floating Badges */}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-none">
@@ -91,7 +91,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         </div>
 
         {/* Condition Ribbon at bottom of photo */}
-        <div className="absolute bottom-2.5 left-3 z-10 text-[11px] font-medium text-neutral-300 flex items-center gap-1.5">
+        <div className="absolute bottom-2.5 left-3 z-10 text-[11px] font-medium text-white drop-shadow-md flex items-center gap-1.5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
           <span>{formatCondition(vehicle.condition)}</span>
         </div>
@@ -101,8 +101,8 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
       <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between min-w-0">
         <div>
           {/* Make and Year */}
-          <div className="flex items-center justify-between gap-2 text-xs text-neutral-400 mb-1">
-            <span className="uppercase tracking-wider font-semibold text-neutral-300">{vehicle.make}</span>
+          <div className="flex items-center justify-between gap-2 text-xs text-[#68645D] mb-1">
+            <span className="uppercase tracking-wider font-semibold text-[#45423D]">{vehicle.make}</span>
             <span className="flex items-center gap-1">
               <Calendar className="w-3.5 h-3.5 text-neutral-500" />
               {vehicle.year}
@@ -112,19 +112,19 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           {/* Model Title */}
           <h3 
             onClick={() => onSelectVehicle(vehicle)}
-            className="text-lg font-bold text-white group-hover:text-[#E5C158] transition-colors leading-snug cursor-pointer line-clamp-1 font-heading"
+            className="text-lg font-bold text-[#242424] group-hover:text-[#8B6814] transition-colors leading-snug cursor-pointer line-clamp-1 font-heading"
           >
             {vehicle.model}
           </h3>
 
           {vehicle.trim && (
-            <p className="text-xs text-neutral-400 line-clamp-1 mt-0.5">
+            <p className="text-xs text-[#68645D] line-clamp-1 mt-0.5">
               {vehicle.trim}
             </p>
           )}
 
           {/* Price */}
-          <div className="mt-3.5 pt-3 border-t border-[#1e212a] flex items-baseline justify-between">
+          <div className="mt-3.5 pt-3 border-t border-[#E8E4DC] flex items-baseline justify-between">
             <div>
               <span className="text-[10px] uppercase tracking-wider text-neutral-400 block font-medium">
                 Asking Price
@@ -136,17 +136,17 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
 
             {/* Estimated monthly installment teaser */}
             <div className="text-right">
-              <span className="text-[10px] text-neutral-500 uppercase tracking-wider block">
+              <span className="text-[10px] text-[#77736B] uppercase tracking-wider block">
                 From / month
               </span>
-              <span className="text-[10px] sm:text-xs font-semibold text-neutral-300 tabular-nums">
+              <span className="text-[10px] sm:text-xs font-semibold text-[#45423D] tabular-nums">
                 {formatNaira(Math.round((vehicle.price * 0.7) / 24))}
               </span>
             </div>
           </div>
 
           {/* Key Specs Row */}
-          <div className="mt-3 sm:mt-4 grid grid-cols-3 gap-1 sm:gap-2 py-2 px-2 sm:py-2.5 sm:px-3 bg-[#0d0e13] rounded-lg border border-[#1b1d24] text-[9px] sm:text-[11px] text-neutral-300">
+          <div className="mt-3 sm:mt-4 grid grid-cols-3 gap-1 sm:gap-2 py-2 px-2 sm:py-2.5 sm:px-3 bg-[#F4F2EC] rounded-lg border border-[#E2DED5] text-[9px] sm:text-[11px] text-[#45423D]">
             <div className="flex items-center gap-1.5 truncate" title={formatKm(vehicle.mileage)}>
               <Gauge className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
               <span className="truncate">{formatKm(vehicle.mileage)}</span>
@@ -163,10 +163,10 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         </div>
 
         {/* Card Action Buttons */}
-        <div className="mt-4 pt-3 border-t border-[#1e212a] grid grid-cols-2 gap-2">
+        <div className="mt-4 pt-3 border-t border-[#E8E4DC] grid grid-cols-2 gap-2">
           <button
             onClick={() => onSelectVehicle(vehicle)}
-            className="min-w-0 w-full py-2.5 px-2 sm:px-3 bg-[#171a22] hover:bg-[#222530] text-white hover:text-[#E5C158] border border-[#2b2f3d] hover:border-[#D4AF37]/50 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+            className="min-w-0 w-full py-2.5 px-2 sm:px-3 bg-[#F2F0EA] hover:bg-[#E8E4DC] text-[#242424] hover:text-[#8B6814] border border-[#DCD8CF] hover:border-[#D4AF37]/50 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer"
           >
             <Eye className="w-3.5 h-3.5" />
             <span>View Details</span>
@@ -175,7 +175,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           {onCalculateInstallment && vehicle.availability !== 'sold' && (
             <button
               onClick={() => onCalculateInstallment(vehicle)}
-              className="min-w-0 w-full py-2.5 px-2 sm:px-3 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 text-[#E5C158] border border-[#D4AF37]/30 rounded-lg text-[11px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer text-center leading-tight"
+              className="min-w-0 w-full py-2.5 px-2 sm:px-3 bg-[#F7F0DA] hover:bg-[#F0E5C2] text-[#76580F] border border-[#C6A64B]/60 rounded-lg text-[11px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer text-center leading-tight"
               title="Calculate Installment Plan"
             >
               <span className="whitespace-normal">Pay in Installments</span>
