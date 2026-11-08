@@ -14,7 +14,6 @@ import {
   FileText,
   MapPin,
   ArrowRight,
-  MessageCircle,
   CreditCard,
   Eye
 } from 'lucide-react';
@@ -109,7 +108,7 @@ export const VehicleDetailsModal: React.FC<VehicleDetailsModalProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Left Column: Media Gallery (7 cols) */}
-            <div className="lg:col-span-7 space-y-4">
+            <div className="lg:col-span-7 space-y-4 order-last lg:order-first">
               
               {/* Media Mode Tabs */}
               <div className="flex items-center gap-2">
@@ -257,7 +256,7 @@ export const VehicleDetailsModal: React.FC<VehicleDetailsModalProps> = ({
             </div>
 
             {/* Right Column: Pricing & 6 Action CTAs (5 cols) */}
-            <div className="lg:col-span-5 space-y-6">
+            <div className="lg:col-span-5 space-y-6 order-first lg:order-last">
               
               {/* Vehicle Title & Pricing Card */}
               <div className="bg-[#12141c] border border-[#242735] rounded-xl p-6 space-y-4">
@@ -289,13 +288,13 @@ export const VehicleDetailsModal: React.FC<VehicleDetailsModalProps> = ({
                 </div>
 
                 {/* THE 6 MANDATORY ACTION BUTTONS */}
-                <div className="space-y-2.5 pt-2">
+                <div className="grid grid-cols-2 gap-2 pt-2">
                   
                   {/* 1. Buy Now */}
                   <button
                     onClick={() => onBuyNow(vehicle)}
                     disabled={vehicle.availability === 'sold'}
-                    className={`w-full py-3.5 px-4 text-xs font-bold uppercase tracking-wider rounded-lg transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer ${
+                    className={`w-full min-h-[58px] py-3 px-2 text-[10px] sm:text-xs font-bold uppercase tracking-wide rounded-lg transition-all flex items-center justify-center gap-2 text-center shadow-lg cursor-pointer ${
                       vehicle.availability === 'sold'
                         ? 'bg-neutral-800 text-neutral-500 cursor-not-allowed'
                         : 'text-black bg-gradient-to-r from-[#D4AF37] via-[#E5C158] to-[#C59B27] hover:scale-[1.02] shadow-[#D4AF37]/25'
@@ -309,7 +308,7 @@ export const VehicleDetailsModal: React.FC<VehicleDetailsModalProps> = ({
                   <button
                     onClick={() => onPayInstallments(vehicle)}
                     disabled={vehicle.availability === 'sold'}
-                    className="w-full py-3 px-4 text-xs font-bold uppercase tracking-wider text-white bg-[#1a1d27] hover:bg-[#222634] border border-[#303444] hover:border-[#D4AF37]/50 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full min-h-[58px] py-3 px-2 text-[10px] sm:text-xs font-bold uppercase tracking-wide text-white bg-[#1a1d27] hover:bg-[#222634] border border-[#303444] hover:border-[#D4AF37]/50 rounded-lg transition-all flex items-center justify-center gap-2 text-center cursor-pointer"
                   >
                     <Calendar className="w-4 h-4 text-[#D4AF37]" />
                     <span>Pay in Installments (Up to 24 Months)</span>
@@ -318,7 +317,7 @@ export const VehicleDetailsModal: React.FC<VehicleDetailsModalProps> = ({
                   {/* 3. Book Inspection */}
                   <button
                     onClick={() => onBookInspection(vehicle)}
-                    className="w-full py-3 px-4 text-xs font-bold uppercase tracking-wider text-neutral-200 bg-[#161821] hover:bg-[#1e202c] border border-[#272b39] hover:border-[#D4AF37]/40 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full min-h-[58px] py-3 px-2 text-[10px] sm:text-xs font-bold uppercase tracking-wide text-neutral-200 bg-[#161821] hover:bg-[#1e202c] border border-[#272b39] hover:border-[#D4AF37]/40 rounded-lg transition-all flex items-center justify-center gap-2 text-center cursor-pointer"
                   >
                     <ShieldCheck className="w-4 h-4 text-[#D4AF37]" />
                     <span>Book Private Vehicle Inspection</span>
@@ -327,27 +326,16 @@ export const VehicleDetailsModal: React.FC<VehicleDetailsModalProps> = ({
                   {/* 4. Car Financing */}
                   <button
                     onClick={() => onCarFinancing(vehicle)}
-                    className="w-full py-3 px-4 text-xs font-bold uppercase tracking-wider text-[#E5C158] bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 border border-[#D4AF37]/30 rounded-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full min-h-[58px] py-3 px-2 text-[10px] sm:text-xs font-bold uppercase tracking-wide text-[#E5C158] bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 border border-[#D4AF37]/30 rounded-lg transition-all flex items-center justify-center gap-2 text-center cursor-pointer"
                   >
                     <ArrowRight className="w-4 h-4" />
                     <span>Autochek Car Financing</span>
                   </button>
 
-                  {/* 5. Contact Us on WhatsApp */}
-                  <a
-                    href={whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-3 px-4 text-xs font-bold uppercase tracking-wider text-white bg-emerald-700/80 hover:bg-emerald-600 border border-emerald-500/40 rounded-lg transition-all flex items-center justify-center gap-2"
-                  >
-                    <MessageCircle className="w-4 h-4 fill-white" />
-                    <span>Contact Us on WhatsApp</span>
-                  </a>
-
-                  {/* 6. Save to Favourites */}
+                  {/* Save to Favourites */}
                   <button
                     onClick={() => toggleSaveVehicle(vehicle.id)}
-                    className="w-full py-2.5 px-4 text-xs font-semibold text-neutral-300 hover:text-white bg-[#13151c] hover:bg-[#181a24] border border-[#222530] rounded-lg transition-all flex items-center justify-center gap-2"
+                    className="col-span-2 w-full py-2.5 px-4 text-xs font-semibold text-neutral-300 hover:text-white bg-[#13151c] hover:bg-[#181a24] border border-[#222530] rounded-lg transition-all flex items-center justify-center gap-2"
                   >
                     <Heart className={`w-3.5 h-3.5 ${isSaved ? 'fill-[#D4AF37] text-[#D4AF37]' : ''}`} />
                     <span>{isSaved ? 'Saved in Favourites' : 'Save to Favourites'}</span>
