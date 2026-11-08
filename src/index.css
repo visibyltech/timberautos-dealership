@@ -37,7 +37,7 @@
 
 /* Subtle gold gradient text helper */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #FFF1C5 0%, #E5C158 50%, #C59B27 100%);
+  background: linear-gradient(135deg, #9A7415 0%, #B78B20 50%, #76580F 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
