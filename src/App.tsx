@@ -48,6 +48,18 @@ function DealershipApp() {
       const tab = window.location.hash.replace('#', '');
       setActiveTabState(VALID_TABS.includes(tab) ? tab : 'home');
       setSelectedVehicleForDetails(null);
+      setSelectedVehicleForBuyNow(null);
+      setSelectedVehicleForInstallment(null);
+      setShowInstallmentPortal(false);
+      setSelectedVehicleForInspection(null);
+      setShowInspectionModal(false);
+      setSelectedVehicleForFinancing(null);
+      setShowAutochekModal(false);
+      setShowSearchModal(false);
+      setShowAuthModal(false);
+      setShowCustomerDashboard(false);
+      setShowAdminModal(false);
+      setTermsModalType(null);
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
