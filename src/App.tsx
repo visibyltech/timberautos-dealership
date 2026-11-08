@@ -164,7 +164,7 @@ function DealershipApp() {
         {activeTab === 'inventory' && (
           <InventoryView
             vehicles={vehicles}
-            onSelectVehicle={(veh) => setSelectedVehicleForDetails(veh)}
+            onSelectVehicle={handleSelectVehicle}
             onCalculateInstallment={(veh) => handleOpenInstallments(veh)}
           />
         )}
@@ -176,7 +176,7 @@ function DealershipApp() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
               <FeaturedVehicles
                 vehicles={vehicles}
-                onSelectVehicle={(veh) => setSelectedVehicleForDetails(veh)}
+                onSelectVehicle={handleSelectVehicle}
                 onCalculateInstallment={(veh) => handleOpenInstallments(veh)}
                 onViewAllInventory={() => setActiveTab('inventory')}
               />
@@ -191,7 +191,7 @@ function DealershipApp() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
               <FeaturedVehicles
                 vehicles={vehicles}
-                onSelectVehicle={(veh) => setSelectedVehicleForDetails(veh)}
+                onSelectVehicle={handleSelectVehicle}
                 onCalculateInstallment={(veh) => handleOpenInstallments(veh)}
                 onViewAllInventory={() => setActiveTab('inventory')}
               />
@@ -206,7 +206,7 @@ function DealershipApp() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
               <FeaturedVehicles
                 vehicles={vehicles}
-                onSelectVehicle={(veh) => setSelectedVehicleForDetails(veh)}
+                onSelectVehicle={handleSelectVehicle}
                 onCalculateInstallment={(veh) => handleOpenInstallments(veh)}
                 onViewAllInventory={() => setActiveTab('inventory')}
               />
@@ -244,7 +244,7 @@ function DealershipApp() {
           onPayInstallments={handleOpenInstallments}
           onBookInspection={handleOpenInspection}
           onCarFinancing={handleOpenFinancing}
-          onSelectVehicle={handleSelectVehicle}
+          onSelectVehicle={(v) => setSelectedVehicleForDetails(v)}
         />
       )}
 
@@ -299,7 +299,7 @@ function DealershipApp() {
           onClose={() => setShowSearchModal(false)}
           onSelectVehicle={(v) => {
             setShowSearchModal(false);
-            setSelectedVehicleForDetails(v);
+            handleSelectVehicle(v);
           }}
         />
       )}
@@ -318,7 +318,7 @@ function DealershipApp() {
           onClose={() => setShowCustomerDashboard(false)}
           onSelectVehicle={(v) => {
             setShowCustomerDashboard(false);
-            setSelectedVehicleForDetails(v);
+            handleSelectVehicle(v);
           }}
           onOpenAdmin={() => setShowAdminModal(true)}
         />
@@ -330,7 +330,7 @@ function DealershipApp() {
           onClose={() => setShowAdminModal(false)}
           onSelectVehicle={(v) => {
             setShowAdminModal(false);
-            setSelectedVehicleForDetails(v);
+            handleSelectVehicle(v);
           }}
         />
       )}
