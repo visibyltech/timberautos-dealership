@@ -121,7 +121,7 @@ export const VehicleDetailsModal: React.FC<VehicleDetailsModalProps> = ({
           </section>
 
           {/* Name and price immediately follow the photograph. */}
-          <section className="bg-white border border-[#242735] rounded-xl p-4 sm:p-6 space-y-3">
+          <section className="bg-white border border-[#DEDAD0] rounded-xl p-4 sm:p-6 space-y-3">
             <div>
               <span className="text-[11px] sm:text-xs uppercase tracking-wider text-[#D4AF37] font-semibold">{vehicle.year} · {vehicle.make}</span>
               <h2 className="text-xl sm:text-3xl font-extrabold text-[#242424] font-heading mt-1 leading-tight">{vehicle.model}</h2>
@@ -138,13 +138,13 @@ export const VehicleDetailsModal: React.FC<VehicleDetailsModalProps> = ({
               <button onClick={() => onBuyNow(vehicle)} disabled={vehicle.availability === 'sold'} className={`${actionClass} ${vehicle.availability === 'sold' ? 'bg-neutral-800 text-[#77736B] border-neutral-700' : 'bg-gradient-to-r from-[#D4AF37] to-[#C59B27] text-black border-[#D4AF37]'}`}>
                 <CreditCard className="w-4 h-4" /><span>{vehicle.availability === 'sold' ? 'Vehicle Sold' : 'Buy Now'}</span>
               </button>
-              <button onClick={() => onPayInstallments(vehicle)} disabled={vehicle.availability === 'sold'} className={`${actionClass} bg-[#1a1d27] text-[#242424] border-[#303444] hover:border-[#D4AF37]/50`}>
+              <button onClick={() => onPayInstallments(vehicle)} disabled={vehicle.availability === 'sold'} className={`${actionClass} bg-[#F1EFE9] text-[#242424] border-[#DCD8CF] hover:border-[#D4AF37]/50`}>
                 <Calendar className="w-4 h-4 text-[#D4AF37]" /><span>Pay in Installments</span>
               </button>
               <button onClick={() => onBookInspection(vehicle)} className={`${actionClass} bg-[#F1EFE9] text-[#45423D] border-[#DCD8CF] hover:border-[#D4AF37]/40`}>
                 <ShieldCheck className="w-4 h-4 text-[#D4AF37]" /><span>Book Inspection</span>
               </button>
-              <button onClick={() => onCarFinancing(vehicle)} className={`${actionClass} bg-[#D4AF37]/10 text-[#E5C158] border-[#D4AF37]/30 hover:bg-[#D4AF37]/20`}>
+              <button onClick={() => onCarFinancing(vehicle)} className={`${actionClass} bg-[#F7F0DA] text-[#76580F] border-[#C6A64B]/60 hover:bg-[#F0E5C2]`}>
                 <ArrowRight className="w-4 h-4" /><span>Car Financing</span>
               </button>
             </div>
