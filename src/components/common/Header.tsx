@@ -73,7 +73,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => handleNavClick('home')}
             className="flex items-center gap-2 sm:gap-3 cursor-pointer select-none shrink min-w-0"
           >
-            <div className="relative w-8 h-8 sm:w-11 sm:h-11 rounded-lg overflow-hidden bg-black border border-[#D4AF37]/40 flex items-center justify-center shadow-lg shadow-black/60 group shrink-0">
+            <div className="relative w-7 h-7 sm:w-11 sm:h-11 rounded-lg overflow-hidden bg-black border border-[#D4AF37]/40 flex items-center justify-center shadow-lg shadow-black/60 group shrink-0">
               <img
                 src="/assets/aistudio/file_00000000d02881f485cd91770ad63cb9_5f7889d7.png"
                 alt="Timber Autos Limited Logo"
@@ -81,8 +81,8 @@ export const Header: React.FC<HeaderProps> = ({
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-[11px] sm:text-lg md:text-xl font-extrabold tracking-wide sm:tracking-wider text-white uppercase font-heading flex items-center gap-1 sm:gap-1.5 whitespace-nowrap">
-                TIMBER AUTOS <span className="text-[#D4AF37] font-light">LTD</span>
+              <span className="text-[10px] sm:text-lg md:text-xl font-extrabold tracking-wide sm:tracking-wider text-white uppercase font-heading flex items-center gap-1 sm:gap-1.5 whitespace-nowrap">
+                TIMBER AUTOS <span className="hidden sm:inline text-[#D4AF37] font-light">LTD</span>
               </span>
               <span className="hidden sm:block text-[10px] tracking-widest uppercase text-neutral-400 -mt-0.5">
                 Luxury Dealership &amp; Import
@@ -114,21 +114,21 @@ export const Header: React.FC<HeaderProps> = ({
           </nav>
 
           {/* Right Action Icons & Primary CTA */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1 sm:gap-3 shrink-0">
             {/* Search Button */}
             <button
               onClick={onOpenSearch}
-              className="p-1.5 sm:p-2.5 text-neutral-300 hover:text-[#D4AF37] hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a]"
+              className="p-1 sm:p-2.5 text-neutral-300 hover:text-[#D4AF37] hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a]"
               title="Search Inventory"
               aria-label="Search Inventory"
             >
-              <Search className="w-4 h-4 sm:w-5 sm:h-5" />
+              <Search className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
             </button>
 
             {/* Saved Vehicles Wishlist */}
             <button
               onClick={onOpenSaved}
-              className="relative p-1.5 sm:p-2.5 text-neutral-300 hover:text-[#D4AF37] hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a]"
+              className="relative p-1 sm:p-2.5 text-neutral-300 hover:text-[#D4AF37] hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a]"
               title="Saved Vehicles"
               aria-label="Saved Vehicles"
             >
@@ -143,7 +143,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Installment calculator shortcut */}
             <button
               onClick={() => handleNavClick('installments')}
-              className="p-1.5 sm:p-2.5 text-neutral-300 hover:text-[#D4AF37] hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a] shrink-0"
+              className="p-1 sm:p-2.5 text-neutral-300 hover:text-[#D4AF37] hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a] shrink-0"
               title="Installment Calculator"
               aria-label="Installment Calculator"
             >
@@ -155,7 +155,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="flex items-center gap-1 sm:gap-2 px-1.5 sm:px-3 py-1.5 sm:py-2 text-neutral-300 hover:text-white hover:bg-[#16181f] rounded-lg transition-colors border border-transparent hover:border-[#2d303a]"
               title={currentUser ? currentUser.fullName : "Customer Account"}
             >
-              <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#1e2129] border border-[#D4AF37]/40 flex items-center justify-center text-[#D4AF37] text-xs font-bold shrink-0">
+              <div className="w-5 h-5 sm:w-7 sm:h-7 rounded-full bg-[#1e2129] border border-[#D4AF37]/40 flex items-center justify-center text-[#D4AF37] text-xs font-bold shrink-0">
                 {currentUser ? currentUser.fullName.charAt(0) : <User className="w-3.5 h-3.5" />}
               </div>
               <span className="hidden xl:inline text-xs font-medium max-w-[100px] truncate">
@@ -174,10 +174,10 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Mobile menu hamburger toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-1.5 sm:p-2 text-neutral-300 hover:text-white hover:bg-[#16181f] rounded-lg transition-colors shrink-0"
+              className="lg:hidden p-1 sm:p-2 text-neutral-300 hover:text-white hover:bg-[#16181f] rounded-lg transition-colors shrink-0"
               aria-label="Toggle Menu"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
         </div>
