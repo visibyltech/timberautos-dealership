@@ -128,7 +128,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           </div>
 
           {/* Key Specs Row */}
-          <div className="mt-4 grid grid-cols-3 gap-2 py-2.5 px-3 bg-[#0d0e13] rounded-lg border border-[#1b1d24] text-[11px] text-neutral-300">
+          <div className="mt-3 sm:mt-4 grid grid-cols-3 gap-1 sm:gap-2 py-2 px-2 sm:py-2.5 sm:px-3 bg-[#0d0e13] rounded-lg border border-[#1b1d24] text-[9px] sm:text-[11px] text-neutral-300">
             <div className="flex items-center gap-1.5 truncate" title={formatKm(vehicle.mileage)}>
               <Gauge className="w-3.5 h-3.5 text-[#D4AF37] shrink-0" />
               <span className="truncate">{formatKm(vehicle.mileage)}</span>
