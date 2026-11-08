@@ -1,0 +1,6 @@
+{
+  "name": "Timber Autos Limited - Premium Dealership",
+  "description": "Premier luxury automotive dealership in Nigeria. Car sales, vehicle importation, flexible installment plans up to 24 months, Autochek financing, and inspection booking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
