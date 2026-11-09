@@ -30,7 +30,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onClose, onOpenDashboard }
       onOpenDashboard();
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Unable to sign in. Please try again.';
-      setError(message.replace('Firebase: ', '').replace(/\\s*\\(auth\\/[a-z-]+\\)\\.?/i, ''));
+      setError(message.replace('Firebase: ', '').replace(/\s*\(auth\/[a-z-]+\)\.?/i, ''));
     } finally {
       setBusy(false);
     }
