@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email == 'judemotors55@gmail.com'
+        && request.auth.token.email_verified == true;
+    }
+
+    // Public showroom catalogue. Only the verified dealership admin can
+    // create, change, or remove inventory records.
+    match /vehicles/{vehicleId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Private customer and dealership records. Customer-scoped access rules
+    // will be added with the Firebase-backed form migration.
+    match /orders/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    match /installments/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    match /inspections/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    match /financingEnquiries/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    match /notifications/{document=**} {
+      allow read, write: if isAdmin();
+    }
+    match /settings/{document=**} {
+      allow read, write: if isAdmin();
+    }
+
+    // User profiles are private. Only the admin may manage profiles until
+    // customer ownership rules are deployed.
+    match /users/{userId} {
+      allow read, write: if isAdmin();
+    }
+
+    // Default deny: no unlisted collection is accessible from client apps.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
