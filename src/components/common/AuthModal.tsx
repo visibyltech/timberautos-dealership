@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Lock, Mail, User, Shield, CheckCircle2, ArrowRight } from 'lucide-react';
+import { X, Lock } from 'lucide-react';
 import { useDealership } from '../../context/DealershipContext';
 
 interface AuthModalProps {
@@ -8,17 +8,32 @@ interface AuthModalProps {
 }
 
 export const AuthModal: React.FC<AuthModalProps> = ({ onClose, onOpenDashboard }) => {
-  const { currentUser, loginAs, logout } = useDealership();
+  const { currentUser, loginWithEmail, registerWithEmail, logout } = useDealership();
+  const [error, setError] = useState('');
+  const [busy, setBusy] = useState(false);
   const [mode, setMode] = useState<'login' | 'register'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    loginAs('customer', email);
-    onClose();
-    onOpenDashboard();
+    setError('');
+    setBusy(true);
+    try {
+      if (mode === 'register') {
+        await registerWithEmail(fullName, email, password);
+      } else {
+        await loginWithEmail(email, password);
+      }
+      onClose();
+      onOpenDashboard();
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Unable to sign in. Please try again.';
+      setError(message.replace('Firebase: ', '').replace(/\\s*\\(auth\\/[a-z-]+\\)\\.?/i, ''));
+    } finally {
+      setBusy(false);
+    }
   };
 
   return (
@@ -59,7 +74,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onClose, onOpenDashboard }
                 Go to Portal
               </button>
               <button
-                onClick={logout}
+                onClick={() => { void logout(); }}
                 className="px-4 py-2.5 bg-red-950/60 border border-red-800 text-red-300 font-bold text-xs uppercase rounded-lg hover:bg-red-900/60"
               >
                 Sign Out
@@ -106,43 +121,16 @@ export const AuthModal: React.FC<AuthModalProps> = ({ onClose, onOpenDashboard }
               />
             </div>
 
+            {error && <p role="alert" className="text-xs text-red-300 bg-red-950/40 border border-red-900 rounded-lg p-3">{error}</p>}
+
             <button
-              type="submit"
+              type="submit" disabled={busy}
               className="w-full py-3 bg-gradient-to-r from-[#D4AF37] to-[#E5C158] text-black font-bold text-xs uppercase tracking-wider rounded-lg hover:opacity-95 cursor-pointer"
             >
-              {mode === 'login' ? 'Sign In to Portal' : 'Create VIP Account'}
+              {busy ? 'Please wait...' : mode === 'login' ? 'Sign In to Portal' : 'Create VIP Account'}
             </button>
 
-            {/* Quick Demo Logins for instant evaluation */}
-            <div className="pt-3 border-t border-[#1c1f2b] space-y-2">
-              <span className="text-[10px] uppercase font-bold text-neutral-500 block text-center">
-                One-Click Role Demonstration
-              </span>
-              <div className="grid grid-cols-2 gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    loginAs('customer');
-                    onClose();
-                    onOpenDashboard();
-                  }}
-                  className="py-2 bg-[#161822] hover:bg-[#1f2230] text-neutral-300 text-[11px] font-medium rounded border border-[#272a38]"
-                >
-                  Customer Demo
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    loginAs('admin');
-                    onClose();
-                    onOpenDashboard();
-                  }}
-                  className="py-2 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/20 text-[#E5C158] text-[11px] font-medium rounded border border-[#D4AF37]/30"
-                >
-                  Admin Demo
-                </button>
-              </div>
-            </div>
+
 
             <div className="text-center pt-2">
               <button
