@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, signOut } from 'firebase/auth';
+import { auth, isFirebaseConfigured } from '../lib/firebase';
 import {
   Vehicle,
   Order,
@@ -19,7 +21,6 @@ import {
   INITIAL_INSPECTIONS,
   INITIAL_SETTINGS,
   INITIAL_NOTIFICATIONS,
-  INITIAL_USER
 } from '../data/seedData';
 
 interface DealershipContextType {
@@ -58,8 +59,10 @@ interface DealershipContextType {
   // Settings & System
   updateSettings: (newSettings: DealershipSettings) => void;
   markNotificationRead: (id: string) => void;
-  loginAs: (role: 'customer' | 'admin', email?: string) => void;
-  logout: () => void;
+  loginWithEmail: (email: string, password: string) => Promise<void>;
+  registerWithEmail: (fullName: string, email: string, password: string) => Promise<void>;
+  logout: () => Promise<void>;
+
 }
 
 const DealershipContext = createContext<DealershipContextType | undefined>(undefined);
@@ -130,14 +133,30 @@ export const DealershipProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     }
   });
 
-  const [currentUser, setCurrentUser] = useState<UserAccount | null>(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEYS.USER);
-      return stored ? JSON.parse(stored) : INITIAL_USER;
-    } catch {
-      return INITIAL_USER;
-    }
-  });
+  const [currentUser, setCurrentUser] = useState<UserAccount | null>(null);
+  const [authReady, setAuthReady] = useState(false);
+
+  useEffect(() => {
+    if (!auth) { setAuthReady(true); return; }
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        setCurrentUser(null);
+      } else {
+        const isVerifiedAdmin = user.email === 'judemotors55@gmail.com' && user.emailVerified;
+        setCurrentUser({
+          id: user.uid,
+          email: user.email || '',
+          fullName: user.displayName || (isVerifiedAdmin ? 'Timber Autos Administrator' : 'Timber Autos Customer'),
+          phone: user.phoneNumber || '',
+          role: isVerifiedAdmin ? 'admin' : 'customer',
+          savedVehicleIds: [],
+          createdAt: user.metadata.creationTime || new Date().toISOString()
+        });
+      }
+      setAuthReady(true);
+    });
+    return unsubscribe;
+  }, []);
 
   // Sync back to local storage
   useEffect(() => {
@@ -164,13 +183,7 @@ export const DealershipProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     localStorage.setItem(STORAGE_KEYS.NOTIFICATIONS, JSON.stringify(notifications));
   }, [notifications]);
 
-  useEffect(() => {
-    if (currentUser) {
-      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(currentUser));
-    } else {
-      localStorage.removeItem(STORAGE_KEYS.USER);
-    }
-  }, [currentUser]);
+
 
   // Actions
   const addVehicle = (vehicleData: Omit<Vehicle, 'id' | 'createdAt'>): Vehicle => {
@@ -462,31 +475,19 @@ export const DealershipProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     setNotifications(prev => prev.map(n => n.id === id ? { ...n, read: true } : n));
   };
 
-  const loginAs = (role: 'customer' | 'admin', email?: string) => {
-    if (role === 'admin') {
-      setCurrentUser({
-        id: 'usr-admin-1',
-        email: email || 'admin@timberautos.ng',
-        fullName: 'Timber Autos Managing Director',
-        phone: '+2348143112826',
-        role: 'admin',
-        savedVehicleIds: [],
-        createdAt: '2024-01-01T00:00:00Z'
-      });
-    } else {
-      setCurrentUser({
-        id: 'usr-customer-1',
-        email: email || 'client@timberautos.ng',
-        fullName: 'Alhaji Ibrahim Danjuma',
-        phone: '+2348143112826',
-        role: 'customer',
-        savedVehicleIds: ['tal-veh-001', 'tal-veh-003'],
-        createdAt: '2024-10-01T00:00:00Z'
-      });
-    }
+  const loginWithEmail = async (email: string, password: string) => {
+    if (!auth || !isFirebaseConfigured) throw new Error('Firebase is not configured on this website yet. Please contact the administrator.');
+    await signInWithEmailAndPassword(auth, email.trim(), password);
   };
 
-  const logout = () => {
+  const registerWithEmail = async (fullName: string, email: string, password: string) => {
+    if (!auth || !isFirebaseConfigured) throw new Error('Firebase is not configured on this website yet. Please contact the administrator.');
+    const credential = await createUserWithEmailAndPassword(auth, email.trim(), password);
+    await updateProfile(credential.user, { displayName: fullName.trim() });
+  };
+
+  const logout = async () => {
+    if (auth) await signOut(auth);
     setCurrentUser(null);
   };
 
@@ -519,7 +520,8 @@ export const DealershipProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         submitFinancingEnquiry,
         updateSettings,
         markNotificationRead,
-        loginAs,
+        loginWithEmail,
+        registerWithEmail,
         logout
       }}
     >
