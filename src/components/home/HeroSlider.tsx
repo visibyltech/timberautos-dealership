@@ -51,7 +51,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
   }, []);
 
   return (
-    <div className="relative w-full min-h-[390px] sm:min-h-[500px] lg:min-h-[560px] bg-[#F5F4F0] overflow-hidden select-none">
+    <div className="relative w-full min-h-[340px] sm:min-h-[430px] lg:min-h-[500px] bg-[#F5F4F0] overflow-hidden select-none">
       {/* Background Images with smooth crossfade */}
       {SLIDES.map((slide, index) => {
         const isActive = index === currentSlide;
@@ -77,8 +77,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
       })}
 
       {/* Hero Content Overlay */}
-      <div className="relative z-20 max-w-7xl mx-auto min-h-[540px] sm:min-h-[620px] lg:min-h-[680px] px-4 sm:px-6 lg:px-8 py-6 sm:py-10 flex flex-col justify-center">
-        <div className="max-w-2xl lg:max-w-3xl space-y-3 sm:space-y-4">
+      <div className="relative z-20 max-w-7xl mx-auto min-h-[340px] sm:min-h-[430px] lg:min-h-[500px] px-4 sm:px-6 lg:px-8 pt-5 pb-10 sm:py-8 flex flex-col justify-center">
+        <div className="max-w-2xl lg:max-w-3xl space-y-2 sm:space-y-3">
           
           {/* Subtle gold brand eyebrow */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 border border-[#C6A64B]/60 backdrop-blur-md">
@@ -95,7 +95,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
           </h1>
 
           {/* Supporting Text */}
-          <p className="text-base sm:text-lg text-[#4F4B44] leading-relaxed max-w-xl">
+          <p className="text-sm sm:text-lg text-[#4F4B44] leading-snug sm:leading-relaxed max-w-xl">
             Discover exceptional vehicles, flexible payment options and trusted automotive services with <strong className="text-[#242424] font-semibold">Timber Autos Limited</strong>.
           </p>
 
@@ -118,7 +118,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
           </div>
 
           {/* Trust Highlights Strip */}
-          <div className="pt-3 sm:pt-4 grid grid-cols-2 sm:grid-cols-4 gap-x-3 gap-y-2 sm:gap-4 border-t border-[#D8D3C9] max-w-2xl text-[11px] sm:text-xs">
+          <div className="pt-2 sm:pt-3 grid grid-cols-2 sm:grid-cols-4 gap-x-3 gap-y-1.5 sm:gap-4 border-t border-[#D8D3C9] max-w-2xl text-[11px] sm:text-xs">
             <div className="flex items-center gap-2 text-[#4F4B44]">
               <ShieldCheck className="w-4 h-4 text-[#D4AF37] shrink-0" />
               <span>Verified Clean Title</span>
@@ -140,7 +140,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
       </div>
 
       {/* Slide Indicators at bottom */}
-      <div className="absolute bottom-3 sm:bottom-5 left-0 right-0 z-20 flex justify-center items-center gap-2">
+      <div className="absolute bottom-2 sm:bottom-4 left-0 right-0 z-20 flex justify-center items-center gap-2">
         {SLIDES.map((_, index) => (
           <button
             key={index}
