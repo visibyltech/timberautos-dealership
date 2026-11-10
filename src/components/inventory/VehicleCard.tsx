@@ -146,7 +146,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           {onCalculateInstallment && vehicle.availability !== 'sold' && (
             <button
               onClick={() => onCalculateInstallment(vehicle)}
-              className="min-w-0 w-full py-2.5 px-2 sm:px-3 bg-[#F7F0DA] hover:bg-[#F0E5C2] text-[#76580F] border border-[#C6A64B]/60 rounded-md text-[10px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer text-center leading-tight"
+              className="min-w-0 w-full py-1.5 px-1.5 sm:px-2 bg-[#F7F0DA] hover:bg-[#F0E5C2] text-[#76580F] border border-[#C6A64B]/60 rounded-md text-[10px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer text-center leading-tight"
               title="Calculate Installment Plan"
             >
               <span className="whitespace-normal">Installments</span>
