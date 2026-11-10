@@ -175,14 +175,14 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
       >
         
         {/* Top Bar */}
-        <div className="px-6 py-3.5 bg-[#12141c] border-b border-[#1f222d] flex items-center justify-between shrink-0">
+        <div className="px-3 sm:px-6 py-3 bg-[#12141c] border-b border-[#1f222d] flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-[#D4AF37] flex items-center justify-center text-black font-extrabold text-sm shadow-md">
               TAL
             </div>
             <div>
-              <h2 className="text-sm font-extrabold text-white tracking-wider uppercase font-heading flex items-center gap-2">
-                TIMBER AUTOS LIMITED <span className="text-[#D4AF37] text-xs font-normal">| Executive Management Portal</span>
+              <h2 className="text-xs sm:text-sm font-extrabold text-white tracking-wide sm:tracking-wider uppercase font-heading flex items-center gap-2">
+                TIMBER AUTOS LIMITED <span className="hidden sm:inline text-[#D4AF37] text-xs font-normal">| Executive Management Portal</span>
               </h2>
             </div>
           </div>
@@ -196,12 +196,12 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
         </div>
 
         {/* Layout: Sidebar + Main Content Area */}
-        <div className="flex-1 flex overflow-hidden">
+        <div className="flex-1 min-h-0 flex flex-col md:flex-row overflow-hidden">
           
           {/* Left Sidebar */}
-          <aside className="w-64 bg-[#0e1017] border-r border-[#1e212b] p-3 flex flex-col justify-between shrink-0 overflow-y-auto">
-            <div className="space-y-1">
-              <span className="text-[10px] uppercase font-bold tracking-widest text-neutral-500 px-3 py-1 block">
+          <aside className="w-full md:w-64 max-h-[38vh] md:max-h-none bg-[#0e1017] border-b md:border-b-0 md:border-r border-[#1e212b] p-2 sm:p-3 flex flex-col justify-between shrink-0 overflow-y-auto">
+            <div className="grid grid-cols-2 md:grid-cols-1 gap-1">
+              <span className="col-span-2 md:col-span-1 text-[10px] uppercase font-bold tracking-widest text-neutral-500 px-2 md:px-3 py-1 block">
                 Dealership Operations
               </span>
 
@@ -212,7 +212,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
                   <button
                     key={item.id}
                     onClick={() => setActiveSection(item.id)}
-                    className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs font-medium transition-colors ${
+                    className={`w-full flex items-center justify-between px-2 sm:px-3 py-2 rounded-lg text-[11px] sm:text-xs font-medium transition-colors ${
                       isActive
                         ? 'bg-[#D4AF37] text-black font-bold shadow-md'
                         : 'text-neutral-300 hover:bg-[#161822] hover:text-white'
@@ -235,14 +235,14 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
             </div>
 
             {/* Bottom session indicator */}
-            <div className="pt-3 border-t border-[#1b1d28] px-2 text-[11px] text-neutral-400">
+            <div className="hidden md:block pt-3 border-t border-[#1b1d28] px-2 text-[11px] text-neutral-400">
               <span className="text-white font-semibold block">MD Console Active</span>
               <span className="text-neutral-500">Security: Encrypted Session</span>
             </div>
           </aside>
 
           {/* Main Content Area */}
-          <main className="flex-1 overflow-y-auto p-6 bg-[#0c0e14]">
+          <main className="flex-1 min-w-0 overflow-y-auto p-3 sm:p-6 bg-[#0c0e14]">
             
             {/* 1. OVERVIEW */}
             {activeSection === 'overview' && (
