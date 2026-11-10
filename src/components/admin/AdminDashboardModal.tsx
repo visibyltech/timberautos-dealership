@@ -181,6 +181,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
         {/* Top Bar */}
         <div className="px-3 sm:px-6 py-3 bg-[#12141c] border-b border-[#1f222d] flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
+            <button type="button" onClick={() => setMobileMenuOpen(true)} className="md:hidden p-2 rounded-lg bg-[#1a1c26] text-white" aria-label="Open admin menu"><Menu className="w-5 h-5" /></button>
             <div className="w-8 h-8 rounded-lg bg-[#D4AF37] flex items-center justify-center text-black font-extrabold text-sm shadow-md">
               TAL
             </div>
@@ -200,10 +201,21 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
         </div>
 
         {/* Layout: Sidebar + Main Content Area */}
+        {mobileMenuOpen && (
+          <div className="absolute inset-0 top-[58px] z-40 md:hidden">
+            <button aria-label="Close menu" onClick={() => setMobileMenuOpen(false)} className="absolute inset-0 bg-black/65" />
+            <aside className="relative h-full w-[min(86vw,320px)] bg-[#0e1017] border-r border-[#2a2d38] p-3 overflow-y-auto shadow-2xl">
+              <div className="flex items-center justify-between px-2 pb-3 mb-2 border-b border-[#242733]"><span className="text-[10px] uppercase tracking-widest text-neutral-400 font-bold">Dealership Menu</span><button onClick={() => setMobileMenuOpen(false)} className="p-1.5 rounded bg-[#1a1c26] text-neutral-300"><X className="w-4 h-4" /></button></div>
+              <div className="space-y-1">
+                {navMenuItems.map((item) => { const Icon = item.icon; const active = activeSection === item.id; return <button key={item.id} onClick={() => { setActiveSection(item.id); setMobileMenuOpen(false); }} className={'w-full flex items-center justify-between px-3 py-3 rounded-lg text-sm ' + (active ? 'bg-[#D4AF37] text-black font-bold' : 'text-neutral-200 hover:bg-[#191c26]')}><span className="flex items-center gap-3"><Icon className="w-4 h-4" />{item.label}</span>{item.badge !== undefined && item.badge > 0 && <span className="text-xs font-bold text-[#D4AF37]">{item.badge}</span>}</button>; })}
+              </div>
+            </aside>
+          </div>
+        )}
         <div className="flex-1 min-h-0 flex flex-col md:flex-row overflow-hidden">
           
           {/* Left Sidebar */}
-          <aside className="w-full md:w-64 max-h-[38vh] md:max-h-none bg-[#0e1017] border-b md:border-b-0 md:border-r border-[#1e212b] p-2 sm:p-3 flex flex-col justify-between shrink-0 overflow-y-auto">
+          <aside className="hidden md:flex md:w-64 max-h-none bg-[#0e1017] border-b md:border-b-0 md:border-r border-[#1e212b] p-2 sm:p-3 flex flex-col justify-between shrink-0 overflow-y-auto">
             <div className="grid grid-cols-2 md:grid-cols-1 gap-1">
               <span className="col-span-2 md:col-span-1 text-[10px] uppercase font-bold tracking-widest text-neutral-500 px-2 md:px-3 py-1 block">
                 Dealership Operations
@@ -445,7 +457,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
               <div className="max-w-4xl space-y-6">
                 <div>
                   <h3 className="text-xl font-bold text-white font-heading">Add New Automobile to Inventory</h3>
-                  <p className="text-xs text-neutral-400">Complete vehicle specifications, upload media URLs, and publish to the live website.</p>
+                  <p className="text-xs text-neutral-400">Add vehicle details and select up to four photos and one walkthrough video from your device.</p>
                 </div>
 
                 <form onSubmit={handleCreateVehicle} className="bg-[#12141c] p-6 rounded-xl border border-[#20232e] space-y-4">
