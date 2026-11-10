@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Vehicle } from '../../types';
 import { VehicleCard } from '../inventory/VehicleCard';
 
@@ -20,22 +20,15 @@ export const FeaturedVehicles: React.FC<FeaturedVehiclesProps> = ({
   const displayVehicles = vehicles.filter((v) => v.featured).slice(0, 4);
 
   return (
-    <section className="py-20 bg-[#F5F4F0] border-t border-[#DEDAD0]">
+    <section className="pt-8 pb-12 sm:pt-12 sm:pb-16 bg-[#F5F4F0] border-t border-[#DEDAD0]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div className="space-y-3 max-w-xl">
-            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#D4AF37]">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Dealership Showcase</span>
-            </div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-6 sm:mb-8">
+          <div className="max-w-xl">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-[#242424] tracking-tight font-heading">
-              Featured Luxury Inventory
+              Featured Vehicles
             </h2>
-            <p className="text-[#68645D] text-sm leading-relaxed">
-              Every vehicle undergoes a stringent 300-point diagnostic inspection, verified customs documentation, and complete ownership history validation.
-            </p>
           </div>
 
           <button
