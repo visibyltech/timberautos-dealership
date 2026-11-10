@@ -1,7 +1,7 @@
 import React from 'react';
-import { Heart, Fuel, Gauge, Cog, Eye, Calendar, ArrowRight } from 'lucide-react';
+import { Heart, Eye, Calendar, ArrowRight } from 'lucide-react';
 import { Vehicle } from '../../types';
-import { formatNaira, formatKm, formatCondition } from '../../utils/formatters';
+import { formatNaira } from '../../utils/formatters';
 import { useDealership } from '../../context/DealershipContext';
 import showroomFallback from '../../assets/images/hero_luxury_showroom_1794141434269.jpg';
 import mercedesImage from '../../assets/images/vehicle_mercedes_g63_1794141435015.jpg';
@@ -90,15 +90,8 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
           </button>
         </div>
 
-        {/* Condition Ribbon at bottom of photo */}
-        <div className="absolute bottom-2.5 left-3 z-10 text-[11px] font-medium text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] flex items-center gap-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
-          <span>{formatCondition(vehicle.condition)}</span>
-        </div>
-      </div>
-
       {/* Card Content Area */}
-      <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between min-w-0">
+      <div className="p-3 sm:p-4 flex-1 flex flex-col justify-between min-w-0">
         <div>
           {/* Make and Year */}
           <div className="flex items-center justify-between gap-2 text-xs text-[#68645D] mb-1">
@@ -117,32 +110,10 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
             {vehicle.model}
           </h3>
 
-          {vehicle.trim && (
-            <p className="text-xs text-[#68645D] line-clamp-1 mt-0.5">
-              {vehicle.trim}
-            </p>
-          )}
-
-          {/* Price */}
-          <div className="mt-3.5 pt-3 border-t border-[#E8E4DC] flex items-baseline justify-between">
-            <div>
-              <span className="text-[10px] uppercase tracking-wider text-neutral-400 block font-medium">
-                Asking Price
-              </span>
-              <span className="text-sm sm:text-xl font-extrabold text-gold-gradient font-heading tabular-nums break-words">
-                {formatNaira(vehicle.price)}
-              </span>
-            </div>
-
-            {/* Estimated monthly installment teaser */}
-            <div className="text-right">
-              <span className="text-[10px] text-[#77736B] uppercase tracking-wider block">
-                From / month
-              </span>
-              <span className="text-[10px] sm:text-xs font-semibold text-[#45423D] tabular-nums">
-                {formatNaira(Math.round((vehicle.price * 0.7) / 24))}
-              </span>
-            </div>
+          {/* Asking Price */}
+          <div className="mt-2 pt-2 border-t border-[#E8E4DC]">
+            <span className="text-[9px] uppercase tracking-wider text-neutral-400 block font-medium">Asking Price</span>
+            <span className="text-sm sm:text-lg font-extrabold text-gold-gradient font-heading tabular-nums break-words">{formatNaira(vehicle.price)}</span>
           </div>
 
           {/* Key Specs Row */}
@@ -163,22 +134,22 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({
         </div>
 
         {/* Card Action Buttons */}
-        <div className="mt-4 pt-3 border-t border-[#E8E4DC] grid grid-cols-2 gap-2">
+        <div className="mt-3 pt-2 border-t border-[#E8E4DC] grid grid-cols-2 gap-1.5">
           <button
             onClick={() => onSelectVehicle(vehicle)}
-            className="min-w-0 w-full py-2.5 px-2 sm:px-3 bg-[#F2F0EA] hover:bg-[#E8E4DC] text-[#242424] hover:text-[#8B6814] border border-[#DCD8CF] hover:border-[#D4AF37]/50 rounded-lg text-xs font-semibold transition-all flex items-center justify-center gap-1.5 cursor-pointer"
+            className="min-w-0 w-full py-1.5 px-1.5 sm:px-2 bg-[#F2F0EA] hover:bg-[#E8E4DC] text-[#242424] hover:text-[#8B6814] border border-[#DCD8CF] hover:border-[#D4AF37]/50 rounded-md text-[10px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer"
           >
             <Eye className="w-3.5 h-3.5" />
-            <span>View Details</span>
+            <span>Details</span>
           </button>
 
           {onCalculateInstallment && vehicle.availability !== 'sold' && (
             <button
               onClick={() => onCalculateInstallment(vehicle)}
-              className="min-w-0 w-full py-2.5 px-2 sm:px-3 bg-[#F7F0DA] hover:bg-[#F0E5C2] text-[#76580F] border border-[#C6A64B]/60 rounded-lg text-[11px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer text-center leading-tight"
+              className="min-w-0 w-full py-2.5 px-2 sm:px-3 bg-[#F7F0DA] hover:bg-[#F0E5C2] text-[#76580F] border border-[#C6A64B]/60 rounded-md text-[10px] sm:text-xs font-semibold transition-all flex items-center justify-center gap-1 cursor-pointer text-center leading-tight"
               title="Calculate Installment Plan"
             >
-              <span className="whitespace-normal">Pay in Installments</span>
+              <span className="whitespace-normal">Installments</span>
               <ArrowRight className="w-3 h-3" />
             </button>
           )}
