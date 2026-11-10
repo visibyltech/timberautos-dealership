@@ -51,7 +51,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
   }, []);
 
   return (
-    <div className="relative w-full min-h-[540px] sm:min-h-[620px] lg:min-h-[680px] bg-[#F5F4F0] overflow-hidden select-none">
+    <div className="relative w-full min-h-[390px] sm:min-h-[500px] lg:min-h-[560px] bg-[#F5F4F0] overflow-hidden select-none">
       {/* Background Images with smooth crossfade */}
       {SLIDES.map((slide, index) => {
         const isActive = index === currentSlide;
@@ -77,8 +77,8 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
       })}
 
       {/* Hero Content Overlay */}
-      <div className="relative z-20 max-w-7xl mx-auto min-h-[540px] sm:min-h-[620px] lg:min-h-[680px] px-4 sm:px-6 lg:px-8 py-10 sm:py-16 flex flex-col justify-center">
-        <div className="max-w-2xl lg:max-w-3xl space-y-4 sm:space-y-6">
+      <div className="relative z-20 max-w-7xl mx-auto min-h-[540px] sm:min-h-[620px] lg:min-h-[680px] px-4 sm:px-6 lg:px-8 py-6 sm:py-10 flex flex-col justify-center">
+        <div className="max-w-2xl lg:max-w-3xl space-y-3 sm:space-y-4">
           
           {/* Subtle gold brand eyebrow */}
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 border border-[#C6A64B]/60 backdrop-blur-md">
@@ -89,7 +89,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-[2rem] sm:text-5xl md:text-6xl font-extrabold text-[#242424] tracking-tight leading-[1.1] font-heading">
+          <h1 className="text-[1.85rem] sm:text-5xl md:text-6xl font-extrabold text-[#242424] tracking-tight leading-[1.1] font-heading">
             Drive Excellence. <br />
             <span className="text-gold-gradient">Own Your Dream Car.</span>
           </h1>
@@ -100,10 +100,10 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
           </p>
 
           {/* CTA Buttons */}
-          <div className="pt-2 flex flex-wrap items-center gap-4">
+          <div className="pt-1 flex flex-nowrap items-stretch gap-2 sm:gap-3 w-full sm:w-auto">
             <button
               onClick={onExploreVehicles}
-              className="px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-black bg-gradient-to-r from-[#D4AF37] via-[#E5C158] to-[#C59B27] rounded-lg shadow-xl shadow-[#D4AF37]/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2 group cursor-pointer"
+              className="flex-1 sm:flex-none justify-center px-3 sm:px-7 py-3 sm:py-3.5 text-[10px] sm:text-sm font-bold uppercase tracking-wide sm:tracking-wider text-black bg-gradient-to-r from-[#D4AF37] via-[#E5C158] to-[#C59B27] rounded-lg shadow-xl shadow-[#D4AF37]/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center gap-2 group cursor-pointer"
             >
               <span>Explore Our Vehicles</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -111,14 +111,14 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
 
             <button
               onClick={onExploreFinancing}
-              className="px-7 py-3.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-[#45423D] bg-white/90 hover:bg-[#F0EEE8] border border-[#D8D3C9] hover:border-[#D4AF37]/60 rounded-lg backdrop-blur-md hover:text-white transition-all flex items-center gap-2 cursor-pointer"
+              className="flex-1 sm:flex-none justify-center px-3 sm:px-7 py-3 sm:py-3.5 text-[10px] sm:text-sm font-bold uppercase tracking-wide sm:tracking-wider text-[#45423D] bg-white/90 hover:bg-[#F0EEE8] border border-[#D8D3C9] hover:border-[#D4AF37]/60 rounded-lg backdrop-blur-md hover:text-white transition-all flex items-center gap-2 cursor-pointer"
             >
               <span>Explore Financing</span>
             </button>
           </div>
 
           {/* Trust Highlights Strip */}
-          <div className="pt-4 sm:pt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 border-t border-[#D8D3C9] max-w-2xl text-xs">
+          <div className="pt-3 sm:pt-4 grid grid-cols-2 sm:grid-cols-4 gap-x-3 gap-y-2 sm:gap-4 border-t border-[#D8D3C9] max-w-2xl text-[11px] sm:text-xs">
             <div className="flex items-center gap-2 text-[#4F4B44]">
               <ShieldCheck className="w-4 h-4 text-[#D4AF37] shrink-0" />
               <span>Verified Clean Title</span>
@@ -140,7 +140,7 @@ export const HeroSlider: React.FC<HeroSliderProps> = ({
       </div>
 
       {/* Slide Indicators at bottom */}
-      <div className="absolute bottom-6 left-0 right-0 z-20 flex justify-center items-center gap-2">
+      <div className="absolute bottom-3 sm:bottom-5 left-0 right-0 z-20 flex justify-center items-center gap-2">
         {SLIDES.map((_, index) => (
           <button
             key={index}
