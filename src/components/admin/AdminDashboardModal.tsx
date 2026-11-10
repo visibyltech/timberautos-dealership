@@ -629,25 +629,28 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs text-neutral-300 font-medium mb-1">Primary Photograph Path / URL</label>
-                      <input
-                        type="text"
-                        required
-                        value={newImageUrl}
-                        onChange={(e) => setNewImageUrl(e.target.value)}
-                        className="w-full bg-[#181a24] border border-[#282c3c] rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#D4AF37]"
-                      />
+                      <label className="block text-xs text-neutral-300 font-medium mb-2">Vehicle Photos (up to 4) *</label>
+                      <label className="flex min-h-28 cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[#8F7735] bg-[#181a24] p-4 text-center hover:bg-[#202331]">
+                        <Upload className="h-6 w-6 text-[#D4AF37]" />
+                        <span className="text-xs font-semibold text-white">Choose photos from gallery</span>
+                        <span className="text-[10px] text-neutral-400">JPG, PNG or WEBP · Select up to 4</span>
+                        <input type="file" accept="image/jpeg,image/png,image/webp" multiple className="hidden" onChange={(event) => { setVehicleImages(Array.from(event.target.files || []).slice(0, 4)); setMediaError(''); }} />
+                      </label>
+                      <p className="mt-2 text-[11px] text-neutral-400">{vehicleImages.length ? vehicleImages.map(file => file.name).join(' · ') : 'No photos selected'}</p>
                     </div>
                     <div>
-                      <label className="block text-xs text-neutral-300 font-medium mb-1">Walkthrough Video URL (MP4 / WebM)</label>
-                      <input
-                        type="text"
-                        value={newVideoUrl}
-                        onChange={(e) => setNewVideoUrl(e.target.value)}
-                        className="w-full bg-[#181a24] border border-[#282c3c] rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-[#D4AF37]"
-                      />
+                      <label className="block text-xs text-neutral-300 font-medium mb-2">Walkthrough Video (optional)</label>
+                      <label className="flex min-h-28 cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border border-dashed border-[#8F7735] bg-[#181a24] p-4 text-center hover:bg-[#202331]">
+                        <Upload className="h-6 w-6 text-[#D4AF37]" />
+                        <span className="text-xs font-semibold text-white">Choose video from gallery</span>
+                        <span className="text-[10px] text-neutral-400">MP4, MOV or WebM · One video</span>
+                        <input type="file" accept="video/mp4,video/quicktime,video/webm" className="hidden" onChange={(event) => { setVehicleVideo(event.target.files?.[0] || null); setMediaError(''); }} />
+                      </label>
+                      <p className="mt-2 text-[11px] text-neutral-400">{vehicleVideo?.name || 'No video selected'}</p>
                     </div>
                   </div>
+                  {mediaError && <p role="alert" className="rounded-lg border border-red-800/50 bg-red-950/30 p-3 text-xs text-red-300">{mediaError}</p>}
+                  {mediaUploading && <p className="text-xs text-[#E5C158]">Uploading selected media to Cloudinary… Keep this page open.</p>}
 
                   <div>
                     <label className="block text-xs text-neutral-300 font-medium mb-1">Vehicle Description</label>
@@ -676,9 +679,10 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
                   <div className="pt-2">
                     <button
                       type="submit"
+                      disabled={mediaUploading}
                       className="px-6 py-3 bg-gradient-to-r from-[#D4AF37] to-[#E5C158] text-black text-xs font-bold uppercase rounded-lg hover:scale-[1.01] transition-transform"
                     >
-                      Publish Vehicle to Showroom
+                      {mediaUploading ? 'Uploading media…' : 'Publish Vehicle to Showroom'}
                     </button>
                   </div>
                 </form>
