@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   X,
   Menu,
@@ -73,10 +73,39 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
   const [newVin, setNewVin] = useState('TAL-VIN-' + Math.floor(100000 + Math.random() * 900000));
   const [newDescription, setNewDescription] = useState('');
   const [vehicleImages, setVehicleImages] = useState<File[]>([]);
+  const [vehicleImagePreviews, setVehicleImagePreviews] = useState<{ file: File; url: string }[]>([]);
   const [vehicleVideo, setVehicleVideo] = useState<File | null>(null);
+  const [vehicleVideoPreview, setVehicleVideoPreview] = useState('');
   const [mediaUploading, setMediaUploading] = useState(false);
   const [mediaError, setMediaError] = useState('');
   const [newFeatured, setNewFeatured] = useState(true);
+
+  useEffect(() => () => {
+    vehicleImagePreviews.forEach((preview) => URL.revokeObjectURL(preview.url));
+    if (vehicleVideoPreview) URL.revokeObjectURL(vehicleVideoPreview);
+  }, [vehicleImagePreviews, vehicleVideoPreview]);
+
+  const handleVehiclePhotosChange = (files: FileList | null) => {
+    const selected = Array.from(files || []).filter((file) => file.type.startsWith('image/')).slice(0, 4);
+    vehicleImagePreviews.forEach((preview) => URL.revokeObjectURL(preview.url));
+    setVehicleImages(selected);
+    setVehicleImagePreviews(selected.map((file) => ({ file, url: URL.createObjectURL(file) })));
+    setMediaError('');
+  };
+
+  const removeVehiclePhoto = (index: number) => {
+    const preview = vehicleImagePreviews[index];
+    if (preview) URL.revokeObjectURL(preview.url);
+    setVehicleImages((current) => current.filter((_, i) => i !== index));
+    setVehicleImagePreviews((current) => current.filter((_, i) => i !== index));
+  };
+
+  const handleVehicleVideoChange = (file: File | null) => {
+    if (vehicleVideoPreview) URL.revokeObjectURL(vehicleVideoPreview);
+    setVehicleVideo(file);
+    setVehicleVideoPreview(file ? URL.createObjectURL(file) : '');
+    setMediaError('');
+  };
 
   // Settings form states
   const [setBankName, setSetBankName] = useState(settings.bankDetails.bankName);
@@ -146,7 +175,9 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
         description: newDescription || (newYear + ' ' + newMake + ' ' + newModel + ' presented by Timber Autos Limited.'),
         keyFeatures: [], availability: 'available', images: uploadedImages, videoUrl: uploadedVideoUrl, featured: newFeatured, source: 'timber_autos'
       });
-      setVehicleImages([]); setVehicleVideo(null);
+      vehicleImagePreviews.forEach((preview) => URL.revokeObjectURL(preview.url));
+      if (vehicleVideoPreview) URL.revokeObjectURL(vehicleVideoPreview);
+      setVehicleImages([]); setVehicleImagePreviews([]); setVehicleVideo(null); setVehicleVideoPreview('');
       alert('Vehicle and selected media have been uploaded and added to the showroom.');
       setActiveSection('inventory');
     } catch (error) { setMediaError(error instanceof Error ? error.message : 'Upload failed. Please try again.'); }
@@ -634,9 +665,9 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
                         <Upload className="h-6 w-6 text-[#D4AF37]" />
                         <span className="text-xs font-semibold text-white">Choose photos from gallery</span>
                         <span className="text-[10px] text-neutral-400">JPG, PNG or WEBP · Select up to 4</span>
-                        <input type="file" accept="image/jpeg,image/png,image/webp" multiple className="hidden" onChange={(event) => { setVehicleImages(Array.from(event.target.files || []).slice(0, 4)); setMediaError(''); }} />
+                        <input type="file" accept="image/jpeg,image/png,image/webp" multiple className="hidden" onChange={(event) => handleVehiclePhotosChange(event.target.files)} />
                       </label>
-                      <p className="mt-2 text-[11px] text-neutral-400">{vehicleImages.length ? vehicleImages.map(file => file.name).join(' · ') : 'No photos selected'}</p>
+                      <div className="mt-3 grid grid-cols-2 sm:grid-cols-4 gap-2">{vehicleImagePreviews.map((preview, index) => (<div key={preview.url} className="relative overflow-hidden rounded-lg border border-[#393342] bg-[#0d0f15]"><img src={preview.url} alt={'Vehicle photo ' + (index + 1)} className="h-24 w-full object-cover" /><button type="button" onClick={() => removeVehiclePhoto(index)} className="absolute right-1 top-1 rounded-full bg-black/80 p-1.5 text-white hover:bg-red-600" aria-label={'Remove photo ' + (index + 1)}><X className="h-3.5 w-3.5" /></button><p className="truncate px-1.5 py-1 text-[10px] text-neutral-300">{preview.file.name}</p></div>))}</div><p className="mt-2 text-[10px] text-neutral-500">{vehicleImages.length} of 4 photos selected. Select the gallery button again to replace them.</p>
                     </div>
                     <div>
                       <label className="block text-xs text-neutral-300 font-medium mb-2">Walkthrough Video (optional)</label>
@@ -644,9 +675,9 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
                         <Upload className="h-6 w-6 text-[#D4AF37]" />
                         <span className="text-xs font-semibold text-white">Choose video from gallery</span>
                         <span className="text-[10px] text-neutral-400">MP4, MOV or WebM · One video</span>
-                        <input type="file" accept="video/mp4,video/quicktime,video/webm" className="hidden" onChange={(event) => { setVehicleVideo(event.target.files?.[0] || null); setMediaError(''); }} />
+                        <input type="file" accept="video/mp4,video/quicktime,video/webm" className="hidden" onChange={(event) => handleVehicleVideoChange(event.target.files?.[0] || null)} />
                       </label>
-                      <p className="mt-2 text-[11px] text-neutral-400">{vehicleVideo?.name || 'No video selected'}</p>
+                      {vehicleVideoPreview && <video src={vehicleVideoPreview} controls playsInline className="mt-3 w-full max-h-40 rounded-lg bg-black" />}{vehicleVideo && <div className="mt-2 flex items-center justify-between gap-2"><p className="truncate text-[10px] text-neutral-300">{vehicleVideo.name}</p><button type="button" onClick={() => handleVehicleVideoChange(null)} className="shrink-0 text-xs text-red-300 underline">Remove video</button></div>}{!vehicleVideo && <p className="mt-2 text-[11px] text-neutral-400">No video selected</p>}
                     </div>
                   </div>
                   {mediaError && <p role="alert" className="rounded-lg border border-red-800/50 bg-red-950/30 p-3 text-xs text-red-300">{mediaError}</p>}
