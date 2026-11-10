@@ -65,7 +65,7 @@ export const CustomerDashboardModal: React.FC<CustomerDashboardModalProps> = ({
                 {currentUser ? currentUser.fullName : 'VIP Client Portal'}
               </h3>
               <p className="text-[11px] text-[#D4AF37]">
-                {currentUser?.role === 'admin' ? 'Administrator Account' : 'Verified Dealership Member'} · {currentUser?.email}
+                {currentUser?.role === 'admin' ? 'Administrator Account' : 'Timber Autos Account'} · {currentUser?.email}
               </p>
             </div>
           </div>
