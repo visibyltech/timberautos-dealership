@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   X,
+  Menu,
   LayoutDashboard,
   Car,
   PlusCircle,
@@ -53,6 +54,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
   } = useDealership();
 
   const [activeSection, setActiveSection] = useState<string>('overview');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // New vehicle form states
   const [newMake, setNewMake] = useState('Mercedes-Benz');
@@ -70,8 +72,10 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
   const [newInterior, setNewInterior] = useState('Black / Tan Leather');
   const [newVin, setNewVin] = useState('TAL-VIN-' + Math.floor(100000 + Math.random() * 900000));
   const [newDescription, setNewDescription] = useState('');
-  const [newImageUrl, setNewImageUrl] = useState('/src/assets/images/vehicle_mercedes_g63_1794141435015.jpg');
-  const [newVideoUrl, setNewVideoUrl] = useState('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4');
+  const [vehicleImages, setVehicleImages] = useState<File[]>([]);
+  const [vehicleVideo, setVehicleVideo] = useState<File | null>(null);
+  const [mediaUploading, setMediaUploading] = useState(false);
+  const [mediaError, setMediaError] = useState('');
   const [newFeatured, setNewFeatured] = useState(true);
 
   // Settings form states
@@ -114,39 +118,39 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
     { id: 'settings', label: 'Settings', icon: Settings }
   ];
 
-  const handleCreateVehicle = (e: React.FormEvent) => {
+  const handleCreateVehicle = async (e: React.FormEvent) => {
     e.preventDefault();
-    addVehicle({
-      make: newMake,
-      model: newModel || 'Luxury Edition',
-      trim: newTrim || undefined,
-      year: Number(newYear),
-      price: Number(newPrice),
-      mileage: Number(newMileage),
-      engineCapacity: newEngine,
-      transmission: newTransmission,
-      fuelType: newFuel,
-      bodyType: newBody,
-      condition: newCondition,
-      exteriorColor: newExterior,
-      interiorColor: newInterior,
-      vin: newVin,
-      description: newDescription || `Exclusive ${newYear} ${newMake} ${newModel} presented by Timber Autos Limited. Fully verified customs papers and pristine condition.`,
-      keyFeatures: [
-        'Full LED matrix lighting package',
-        'Handcrafted leather seating & ambient cabin illumination',
-        'Electronic stability and traction control systems',
-        'Computerized diagnostic pass certificate'
-      ],
-      availability: 'available',
-      images: [newImageUrl, '/src/assets/images/hero_luxury_showroom_1794141434269.jpg'],
-      videoUrl: newVideoUrl,
-      featured: newFeatured,
-      source: 'timber_autos'
-    });
-
-    alert('New vehicle successfully added to Timber Autos live showroom inventory!');
-    setActiveSection('inventory');
+    setMediaError('');
+    const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+    const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+    if (!cloudName || !uploadPreset) { setMediaError('Cloudinary is not connected yet. Add the Cloudinary cloud name and unsigned upload preset in Vercel before publishing vehicles.'); return; }
+    if (vehicleImages.length === 0) { setMediaError('Please select at least one vehicle photo from your gallery.'); return; }
+    const uploadFile = async (file: File, resourceType: 'image' | 'video') => {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', uploadPreset);
+      formData.append('folder', 'timberautos/vehicles');
+      const response = await fetch('https://api.cloudinary.com/v1_1/' + cloudName + '/' + resourceType + '/upload', { method: 'POST', body: formData });
+      const result = await response.json();
+      if (!response.ok || !result.secure_url) throw new Error(result.error?.message || 'A media file could not be uploaded.');
+      return result.secure_url as string;
+    };
+    setMediaUploading(true);
+    try {
+      const uploadedImages = await Promise.all(vehicleImages.map((file) => uploadFile(file, 'image')));
+      const uploadedVideoUrl = vehicleVideo ? await uploadFile(vehicleVideo, 'video') : undefined;
+      addVehicle({
+        make: newMake, model: newModel.trim(), trim: newTrim || undefined, year: Number(newYear), price: Number(newPrice), mileage: Number(newMileage),
+        engineCapacity: newEngine, transmission: newTransmission, fuelType: newFuel, bodyType: newBody, condition: newCondition,
+        exteriorColor: newExterior, interiorColor: newInterior, vin: newVin,
+        description: newDescription || (newYear + ' ' + newMake + ' ' + newModel + ' presented by Timber Autos Limited.'),
+        keyFeatures: [], availability: 'available', images: uploadedImages, videoUrl: uploadedVideoUrl, featured: newFeatured, source: 'timber_autos'
+      });
+      setVehicleImages([]); setVehicleVideo(null);
+      alert('Vehicle and selected media have been uploaded and added to the showroom.');
+      setActiveSection('inventory');
+    } catch (error) { setMediaError(error instanceof Error ? error.message : 'Upload failed. Please try again.'); }
+    finally { setMediaUploading(false); }
   };
 
   const handleSaveSettings = (e: React.FormEvent) => {
