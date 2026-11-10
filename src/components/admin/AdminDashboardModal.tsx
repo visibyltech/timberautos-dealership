@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   X,
   Menu,
@@ -79,11 +79,6 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
   const [mediaUploading, setMediaUploading] = useState(false);
   const [mediaError, setMediaError] = useState('');
   const [newFeatured, setNewFeatured] = useState(true);
-
-  useEffect(() => () => {
-    vehicleImagePreviews.forEach((preview) => URL.revokeObjectURL(preview.url));
-    if (vehicleVideoPreview) URL.revokeObjectURL(vehicleVideoPreview);
-  }, [vehicleImagePreviews, vehicleVideoPreview]);
 
   const handleVehiclePhotosChange = (files: FileList | null) => {
     const selected = Array.from(files || []).filter((file) => file.type.startsWith('image/')).slice(0, 4);
