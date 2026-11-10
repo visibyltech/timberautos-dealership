@@ -37,16 +37,15 @@ export const CustomerDashboardModal: React.FC<CustomerDashboardModalProps> = ({
     inspections,
     notifications,
     logout,
-    loginAs,
     isAdmin
   } = useDealership();
 
   const [activeTab, setActiveTab] = useState<'profile' | 'saved' | 'orders' | 'installments' | 'inspections' | 'notifications'>('profile');
 
-  // Filter user records (or show all client records if demo session)
-  const userOrders = orders;
-  const userInstallments = installments;
-  const userInspections = inspections;
+  // Only show records belonging to the signed-in account.
+  const userOrders = orders.filter((order) => order.customer?.email === currentUser?.email);
+  const userInstallments = installments.filter((item) => item.customer?.email === currentUser?.email);
+  const userInspections = inspections.filter((item) => item.customer?.email === currentUser?.email);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
@@ -184,35 +183,13 @@ export const CustomerDashboardModal: React.FC<CustomerDashboardModalProps> = ({
 
                 <div className="p-4 bg-[#13151f] rounded-xl border border-[#222532] space-y-3 flex flex-col justify-between">
                   <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] block mb-2">
-                      Session &amp; Role Switcher
-                    </span>
-                    <p className="text-xs text-neutral-400 leading-relaxed mb-4">
-                      Quickly switch between customer view and administrative console for testing the dealership's end-to-end purchasing and approval flows.
-                    </p>
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#D4AF37] block mb-2">Account Security</span>
+                    <p className="text-xs text-neutral-400 leading-relaxed">You are signed in to your Timber Autos account. Your account access is managed securely.</p>
+                    <p className="text-xs text-neutral-300 mt-3">Account type: <span className="text-[#D4AF37] font-semibold">{isAdmin ? 'Administrator' : 'Customer'}</span></p>
                   </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    <button
-                      onClick={() => loginAs('customer')}
-                      className="px-3 py-1.5 bg-[#1b1e2a] hover:bg-[#252838] text-neutral-200 text-xs font-medium rounded-lg border border-[#2e3242]"
-                    >
-                      Login as Client
-                    </button>
-                    <button
-                      onClick={() => loginAs('admin')}
-                      className="px-3 py-1.5 bg-[#D4AF37]/20 hover:bg-[#D4AF37]/30 text-[#E5C158] text-xs font-medium rounded-lg border border-[#D4AF37]/40"
-                    >
-                      Login as Admin
-                    </button>
-                    <button
-                      onClick={logout}
-                      className="px-3 py-1.5 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs font-medium rounded-lg border border-red-800/40 flex items-center gap-1"
-                    >
-                      <LogOut className="w-3.5 h-3.5" />
-                      Sign Out
-                    </button>
-                  </div>
+                  <button onClick={() => { void logout(); onClose(); }} className="self-start px-3 py-2 bg-red-950/40 hover:bg-red-900/60 text-red-300 text-xs font-medium rounded-lg border border-red-800/40 flex items-center gap-1.5">
+                    <LogOut className="w-3.5 h-3.5" />Sign Out
+                  </button>
                 </div>
               </div>
             </div>
