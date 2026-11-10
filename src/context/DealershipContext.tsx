@@ -91,27 +91,27 @@ export const DealershipProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const [orders, setOrders] = useState<Order[]>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEYS.ORDERS);
-      return stored ? JSON.parse(stored) : INITIAL_ORDERS;
+      return stored ? JSON.parse(stored).filter((item: Order) => item.id !== 'ord-1001') : [];
     } catch {
-      return INITIAL_ORDERS;
+      return [];
     }
   });
 
   const [installments, setInstallments] = useState<InstallmentApplication[]>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEYS.INSTALLMENTS);
-      return stored ? JSON.parse(stored) : INITIAL_INSTALLMENTS;
+      return stored ? JSON.parse(stored).filter((item: InstallmentApplication) => item.id !== 'inst-1001') : [];
     } catch {
-      return INITIAL_INSTALLMENTS;
+      return [];
     }
   });
 
   const [inspections, setInspections] = useState<InspectionBooking[]>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEYS.INSPECTIONS);
-      return stored ? JSON.parse(stored) : INITIAL_INSPECTIONS;
+      return stored ? JSON.parse(stored).filter((item: InspectionBooking) => item.id !== 'insp-1001') : [];
     } catch {
-      return INITIAL_INSPECTIONS;
+      return [];
     }
   });
 
@@ -127,9 +127,9 @@ export const DealershipProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const [notifications, setNotifications] = useState<NotificationItem[]>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEYS.NOTIFICATIONS);
-      return stored ? JSON.parse(stored) : INITIAL_NOTIFICATIONS;
+      return stored ? JSON.parse(stored).filter((item: NotificationItem) => !['notif-1','notif-2','notif-3'].includes(item.id)) : [];
     } catch {
-      return INITIAL_NOTIFICATIONS;
+      return [];
     }
   });
 
