@@ -51,7 +51,7 @@ export const VehicleCard: React.FC<VehicleCardProps> = ({ vehicle, onSelectVehic
 
       <div className="p-3 sm:p-4 flex flex-1 flex-col min-w-0">
         <div className="flex items-center justify-between gap-2 text-xs text-gray-300 mb-1">
-          <span className="uppercase tracking-wider font-semibold text-gray-200">{vehicle.make</span>
+          <span className="uppercase tracking-wider font-semibold text-gray-200">{vehicle.make}</span>
           <span className="flex items-center gap-1 shrink-0"><Calendar className="w-3.5 h-3.5 text-neutral-500" />{vehicle.year}</span>
         </div>
         <h3 onClick={() => onSelectVehicle(vehicle)} className="text-base sm:text-lg font-bold text-white group-hover:text-[#E5C158] transition-colors leading-snug cursor-pointer line-clamp-1 font-heading">{vehicle.model}</h3>
