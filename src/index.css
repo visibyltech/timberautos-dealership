@@ -50,3 +50,66 @@
   border-color: rgba(212, 175, 55, 0.5);
   box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
 }
+
+
+/* Consistent website-wide charcoal and gold theme.
+   These overrides cover page sections and cards that still carry legacy light-theme utilities. */
+@layer utilities {
+  [class~="bg-white"],
+  [class~="bg-[#F5F4F0]"],
+  [class~="bg-[#F0EEE8]"],
+  [class~="bg-[#EEECE6]"],
+  [class~="bg-[#F1EFE9]"],
+  [class~="bg-[#F4F1E9]"],
+  [class~="bg-[#F4F2EC]"],
+  [class~="bg-[#F2F0EA]"],
+  [class~="bg-[#F8F7F3]"],
+  [class~="bg-[#E9E7E1]"],
+  [class~="bg-[#F7F0DA]"] {
+    background-color: #171B25 !important;
+    color: #F3F4F6 !important;
+    border-color: #303644;
+  }
+
+  [class~="text-[#242424]"],
+  [class~="text-[#45423D]"] {
+    color: #F3F4F6 !important;
+  }
+
+  [class~="text-[#4F4B44]"],
+  [class~="text-[#68645D]"],
+  [class~="text-[#625F58]"] {
+    color: #C4C8D0 !important;
+  }
+
+  [class~="border-[#DEDAD0]"],
+  [class~="border-[#DCD8CF]"],
+  [class~="border-[#E2DED5]"],
+  [class~="border-[#E4E0D8]"],
+  [class~="border-[#E8E4DC]"] {
+    border-color: #303644 !important;
+  }
+
+  [class~="bg-[#F4F1E9]"] {
+    background-color: #202530 !important;
+  }
+
+  [class~="bg-[#F2F0EA]"],
+  [class~="bg-[#F4F2EC]"],
+  [class~="bg-[#F1EFE9]"] {
+    background-color: #202530 !important;
+  }
+
+  [class~="bg-[#F7F0DA]"] {
+    background-color: #2B2618 !important;
+  }
+
+  [class~="bg-[#E9E7E1]"] {
+    background-color: #11141C !important;
+  }
+}
+
+/* Keep form controls legible on the dark storefront. */
+input, textarea, select {
+  color-scheme: dark;
+}
