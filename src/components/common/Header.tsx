@@ -41,9 +41,9 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <>
       {/* Top micro info strip */}
-      <div className="hidden sm:block bg-[#F1EFE9] border-b border-[#DEDAD0] text-xs text-[#68645D] py-1.5 px-3 sm:px-8">
+      <div className="hidden sm:block bg-[#11141C] border-b border-[#292D37] text-xs text-gray-400 py-1.5 px-3 sm:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-center md:justify-between">
-          <div className="hidden md:flex items-center gap-4 text-[#68645D]">
+          <div className="hidden md:flex items-center gap-4 text-gray-400">
             <span>Lekki Phase 1, Lagos &amp; CBD, Abuja</span>
           </div>
 
@@ -65,7 +65,7 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Main Navigation Bar */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E2DED5] transition-all">
+      <header className="sticky top-0 z-40 bg-[#11141C]/95 backdrop-blur-md border-b border-[#292D37] transition-all">
         <div className="max-w-7xl mx-auto w-full px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-6">
           
           {/* Brand Logo & Title */}
@@ -81,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({
               />
             </div>
             <div className="flex flex-col">
-              <span className="text-sm sm:text-lg md:text-xl font-extrabold tracking-wide sm:tracking-wider text-[#242424] uppercase font-heading flex items-center gap-1 sm:gap-1.5 whitespace-nowrap">
+              <span className="text-sm sm:text-lg md:text-xl font-extrabold tracking-wide sm:tracking-wider text-white uppercase font-heading flex items-center gap-1 sm:gap-1.5 whitespace-nowrap">
                 TIMBER AUTOS <span className="hidden sm:inline text-[#D4AF37] font-light">LTD</span>
               </span>
               <span className="hidden sm:block text-[10px] tracking-widest uppercase text-[#68645D] -mt-0.5">
@@ -91,7 +91,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[13px] font-medium text-[#45423D]">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-[13px] font-medium text-gray-300">
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
               return (
@@ -101,7 +101,7 @@ export const Header: React.FC<HeaderProps> = ({
                   className={`relative py-1 whitespace-nowrap transition-colors ${
                     isActive 
                       ? 'text-[#E5C158] font-semibold' 
-                      : 'hover:text-[#171717] text-[#45423D]'
+                      : 'hover:text-white text-[#45423D]'
                   }`}
                 >
                   {item.label}
@@ -118,7 +118,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Search Button */}
             <button
               onClick={onOpenSearch}
-              className="p-1 sm:p-2.5 text-[#45423D] hover:text-[#D4AF37] hover:bg-[#F1EFE9] rounded-lg transition-colors border border-transparent hover:border-[#2d303a]"
+              className="p-1 sm:p-2.5 text-[#45423D] hover:text-[#D4AF37] hover:bg-[#242A36] rounded-lg transition-colors border border-transparent hover:border-[#2d303a]"
               title="Search Inventory"
               aria-label="Search Inventory"
             >
@@ -184,7 +184,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-[#E2DED5] px-5 py-4 space-y-2">
+          <div className="lg:hidden bg-[#11141C] border-b border-[#292D37] px-5 py-4 space-y-2">
             {navItems.map((item) => (
               <button
                 key={item.id}
@@ -199,7 +199,7 @@ export const Header: React.FC<HeaderProps> = ({
               </button>
             ))}
 
-            <div className="pt-3 border-t border-[#DEDAD0] flex flex-col gap-2">
+            <div className="pt-3 border-t border-[#292D37] flex flex-col gap-2">
               <button
                 onClick={() => handleNavClick('inventory')}
                 className="w-full py-3 text-center text-xs font-semibold uppercase tracking-wider text-black bg-gradient-to-r from-[#D4AF37] to-[#E5C158] rounded-lg"
