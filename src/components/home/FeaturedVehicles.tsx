@@ -48,5 +48,6 @@ export const FeaturedVehicles: React.FC<FeaturedVehiclesProps> = ({
           ))}
         </div>
       </div>
+    </section>
   );
 };
