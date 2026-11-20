@@ -146,7 +146,7 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
 
         {/* Vehicle Cards Grid */}
         {filteredVehicles.length > 0 ? (
-          <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3">
             {filteredVehicles.map((vehicle) => (
               <VehicleCard
                 key={vehicle.id}

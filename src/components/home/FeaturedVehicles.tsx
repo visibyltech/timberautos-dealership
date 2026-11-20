@@ -38,7 +38,7 @@ export const FeaturedVehicles: React.FC<FeaturedVehiclesProps> = ({
 
         <div className="flex gap-4 overflow-x-auto overflow-y-hidden pb-4 snap-x snap-mandatory scroll-smooth [scrollbar-width:thin]">
           {displayVehicles.map((vehicle) => (
-            <div key={vehicle.id} className="flex-none w-[82vw] max-w-[440px] sm:w-[380px] snap-start">
+            <div key={vehicle.id} className="flex-none w-[42vw] min-w-[150px] max-w-[220px] sm:w-[190px] sm:max-w-[190px] snap-start">
               <VehicleCard
                 vehicle={vehicle}
                 onSelectVehicle={onSelectVehicle}
