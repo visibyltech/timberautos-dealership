@@ -5,6 +5,7 @@ import { Footer } from './components/common/Footer';
 import { WhatsAppButton } from './components/common/WhatsAppButton';
 import { HeroSlider } from './components/home/HeroSlider';
 import { FeaturedVehicles } from './components/home/FeaturedVehicles';
+import { VehicleCategorySections } from './components/home/VehicleCategorySections';
 import { WhyChooseUs } from './components/home/WhyChooseUs';
 import { InstallmentPreview } from './components/home/InstallmentPreview';
 import { FinancingBanner } from './components/home/FinancingBanner';
@@ -154,6 +155,8 @@ function DealershipApp() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             />
+
+            <VehicleCategorySections vehicles={vehicles} onSelectVehicle={handleSelectVehicle} onCalculateInstallment={(veh) => handleOpenInstallments(veh)} />
 
             <WhyChooseUs />
 

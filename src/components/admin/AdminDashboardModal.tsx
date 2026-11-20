@@ -66,7 +66,7 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
   const [newEngine, setNewEngine] = useState('4.0L V8 Biturbo');
   const [newTransmission, setNewTransmission] = useState<'Automatic' | 'Manual' | 'Dual-Clutch'>('Automatic');
   const [newFuel, setNewFuel] = useState<'Petrol' | 'Diesel' | 'Hybrid' | 'Electric'>('Petrol');
-  const [newBody, setNewBody] = useState<'Luxury SUV' | 'Sedan' | 'Coupe' | 'Crossover'>('Luxury SUV');
+  const [newBody, setNewBody] = useState<'Luxury SUV' | 'Sedan' | 'Coupe' | 'Truck / Pickup' | 'Crossover'>('Luxury SUV');
   const [newCondition, setNewCondition] = useState<VehicleCondition>('brand-new');
   const [newExterior, setNewExterior] = useState('Obsidian Black');
   const [newInterior, setNewInterior] = useState('Black / Tan Leather');
@@ -566,7 +566,8 @@ export const AdminDashboardModal: React.FC<AdminDashboardModalProps> = ({ onClos
                       >
                         <option value="Luxury SUV">Luxury SUV</option>
                         <option value="Sedan">Sedan</option>
-                        <option value="Coupe">Coupe</option>
+                        <option value="Coupe">Sports Cars &amp; Coupes</option>
+                        <option value="Truck / Pickup">Pickup Trucks</option>
                         <option value="Crossover">Crossover</option>
                       </select>
                     </div>
